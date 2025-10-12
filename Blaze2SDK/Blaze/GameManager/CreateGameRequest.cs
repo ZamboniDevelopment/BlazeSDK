@@ -55,7 +55,7 @@ namespace Blaze2SDK.Blaze.GameManager
         public int mGameProtocolVersion;
         
         [TdfMember("HNET")]
-        public List<NetworkAddress> mHostNetworkAddressList;
+        public NetworkAddress mHostNetworkAddress;
         
         [TdfMember("IGNO")]
         public bool mIgnoreEntryCriteriaWithInvite;
