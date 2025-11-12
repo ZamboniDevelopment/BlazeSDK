@@ -1,3 +1,5 @@
+using Blaze3SDK.Blaze.Example;
+using Blaze3SDK.Components;
 using Tdf;
 
 namespace Blaze3SDK.Blaze.GameManager
@@ -85,7 +87,7 @@ namespace Blaze3SDK.Blaze.GameManager
 		public List<ushort> mSlotCapacities;
 
 		[TdfMember("TCAP")]
-		public ushort mTeamCapacity;
+		public List<TeamCapacity> mTeamCapacity;
 
 		[TdfMember("TIDS")]
 		public List<ushort> mTeamIds;
