@@ -72,13 +72,13 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)UtilComponentCommand.userSettingsSave)]
-            public virtual Task<NullStruct> UserSettingsSaveAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<NullStruct> UserSettingsSaveAsync(UserSettingsSaveRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
             
             [BlazeCommand((ushort)UtilComponentCommand.userSettingsLoadAll)]
-            public virtual Task<NullStruct> UserSettingsLoadAllAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<UserSettingsLoadAllResponse> UserSettingsLoadAllAsync(NullStruct request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -217,20 +217,20 @@ namespace Blaze2SDK.Components
             
             public NullStruct UserSettingsSave()
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsSave, new NullStruct());
+                return Connection.SendRequest<UserSettingsSaveRequest, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsSave, new UserSettingsSaveRequest());
             }
             public Task<NullStruct> UserSettingsSaveAsync()
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsSave, new NullStruct());
+                return Connection.SendRequestAsync<UserSettingsSaveRequest, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsSave, new UserSettingsSaveRequest());
             }
             
-            public NullStruct UserSettingsLoadAll()
+            public UserSettingsLoadAllResponse UserSettingsLoadAll()
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsLoadAll, new NullStruct());
+                return Connection.SendRequest<NullStruct, UserSettingsLoadAllResponse, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsLoadAll, new NullStruct());
             }
-            public Task<NullStruct> UserSettingsLoadAllAsync()
+            public Task<UserSettingsLoadAllResponse> UserSettingsLoadAllAsync()
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsLoadAll, new NullStruct());
+                return Connection.SendRequestAsync<NullStruct, UserSettingsLoadAllResponse, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsLoadAll, new NullStruct());
             }
             
             public NullStruct UserSettingsLoadAllForUserId()
@@ -348,15 +348,15 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)UtilComponentCommand.userSettingsSave)]
-            public virtual Task<NullStruct> UserSettingsSaveAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<NullStruct> UserSettingsSaveAsync(UserSettingsSaveRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsSave, request);
+                return context.ClientConnection.SendRequestAsync<UserSettingsSaveRequest, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsSave, request);
             }
             
             [BlazeCommand((ushort)UtilComponentCommand.userSettingsLoadAll)]
-            public virtual Task<NullStruct> UserSettingsLoadAllAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<UserSettingsLoadAllResponse> UserSettingsLoadAllAsync(NullStruct request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsLoadAll, request);
+                return context.ClientConnection.SendRequestAsync<NullStruct, UserSettingsLoadAllResponse, NullStruct>(this, (ushort)UtilComponentCommand.userSettingsLoadAll, request);
             }
             
             [BlazeCommand((ushort)UtilComponentCommand.userSettingsLoadAllForUserId)]
@@ -408,7 +408,7 @@ namespace Blaze2SDK.Components
             UtilComponentCommand.preAuth => typeof(PreAuthRequest),
             UtilComponentCommand.postAuth => typeof(NullStruct),
             UtilComponentCommand.userSettingsLoad => typeof(NullStruct),
-            UtilComponentCommand.userSettingsSave => typeof(NullStruct),
+            UtilComponentCommand.userSettingsSave => typeof(UserSettingsSaveRequest),
             UtilComponentCommand.userSettingsLoadAll => typeof(NullStruct),
             UtilComponentCommand.userSettingsLoadAllForUserId => typeof(NullStruct),
             UtilComponentCommand.filterForProfanity => typeof(FilterUserTextResponse),
@@ -430,7 +430,7 @@ namespace Blaze2SDK.Components
             UtilComponentCommand.postAuth => typeof(PostAuthResponse),
             UtilComponentCommand.userSettingsLoad => typeof(NullStruct),
             UtilComponentCommand.userSettingsSave => typeof(NullStruct),
-            UtilComponentCommand.userSettingsLoadAll => typeof(NullStruct),
+            UtilComponentCommand.userSettingsLoadAll => typeof(UserSettingsLoadAllResponse),
             UtilComponentCommand.userSettingsLoadAllForUserId => typeof(NullStruct),
             UtilComponentCommand.filterForProfanity => typeof(FilterUserTextResponse),
             UtilComponentCommand.fetchQosConfig => typeof(NullStruct),
