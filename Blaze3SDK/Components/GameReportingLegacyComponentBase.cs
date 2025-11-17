@@ -17,7 +17,7 @@ namespace Blaze3SDK.Components
             }
 
             [BlazeCommand((ushort)GameReportingLegacyComponentCommand.submitGameReport)]
-            public virtual Task<NullStruct> SubmitGameReportAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<NullStruct> SubmitGameReportAsync(GameReport request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -104,11 +104,11 @@ namespace Blaze3SDK.Components
 
             public NullStruct SubmitGameReport()
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)GameReportingLegacyComponentCommand.submitGameReport, new NullStruct());
+                return Connection.SendRequest<GameReport, NullStruct, NullStruct>(this, (ushort)GameReportingLegacyComponentCommand.submitGameReport, new GameReport());
             }
             public Task<NullStruct> SubmitGameReportAsync()
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)GameReportingLegacyComponentCommand.submitGameReport, new NullStruct());
+                return Connection.SendRequestAsync<GameReport, NullStruct, NullStruct>(this, (ushort)GameReportingLegacyComponentCommand.submitGameReport, new GameReport());
             }
 
             public NullStruct SubmitOfflineGameReport()
@@ -215,9 +215,9 @@ namespace Blaze3SDK.Components
             }
 
             [BlazeCommand((ushort)GameReportingLegacyComponentCommand.submitGameReport)]
-            public virtual Task<NullStruct> SubmitGameReportAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<NullStruct> SubmitGameReportAsync(GameReport request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)GameReportingLegacyComponentCommand.submitGameReport, request);
+                return context.ClientConnection.SendRequestAsync<GameReport, NullStruct, NullStruct>(this, (ushort)GameReportingLegacyComponentCommand.submitGameReport, request);
             }
 
             [BlazeCommand((ushort)GameReportingLegacyComponentCommand.submitOfflineGameReport)]
@@ -290,7 +290,7 @@ namespace Blaze3SDK.Components
 
         public static Type GetCommandRequestType(GameReportingLegacyComponentCommand command) => command switch
         {
-            GameReportingLegacyComponentCommand.submitGameReport => typeof(NullStruct),
+            GameReportingLegacyComponentCommand.submitGameReport => typeof(GameReport),
             GameReportingLegacyComponentCommand.submitOfflineGameReport => typeof(NullStruct),
             GameReportingLegacyComponentCommand.submitGameEvents => typeof(NullStruct),
             GameReportingLegacyComponentCommand.getGameReports => typeof(NullStruct),

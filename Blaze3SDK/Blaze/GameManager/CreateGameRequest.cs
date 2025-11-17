@@ -53,6 +53,9 @@ namespace Blaze3SDK.Blaze.GameManager
 
 		[TdfMember("TIDX")]
 		public ushort mJoiningTeamIndex;
+		
+		[TdfMember("TEAM")]
+		public ushort mTeam;
 
 		[TdfMember("PMAX")]
 		public ushort mMaxPlayerCapacity;

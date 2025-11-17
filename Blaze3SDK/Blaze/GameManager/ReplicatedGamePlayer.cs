@@ -47,6 +47,9 @@ namespace Blaze3SDK.Blaze.GameManager
 
 		[TdfMember("TIDX")]
 		public ushort mTeamIndex;
+		
+		[TdfMember("TEAM")]
+		public ushort mTeam;
 
 		[TdfMember("UGID")]
 		public BlazeObjectId mUserGroupId;
