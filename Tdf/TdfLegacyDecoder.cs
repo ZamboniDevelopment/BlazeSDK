@@ -53,14 +53,14 @@ namespace Tdf
             if (!stream.ReadTdfLegacyBaseTypeAndSize(out TdfLegacyBaseType baseType, out byte size))
                 return false;
 
-            //Console.WriteLine($"ReadTdf: {tdfMember} {baseType} {size}");
+            Console.WriteLine($"ReadTdf: {tdfMember} {baseType} {size}");
 
             context.TryGetValue(tdfMember, out FieldInfo? field);
             TdfReader? reader = GetTdfReader(baseType);
             if (reader == null)
                 return false;
             bool res = reader(stream, size, ref instance, field);
-            //Console.WriteLine($"ReadTdf: {tdfMember} {baseType} {field?.Name} {res}");
+            Console.WriteLine($"ReadTdf: {tdfMember} {baseType} {field?.Name} {res}");
             return res;
         }
 

@@ -35,7 +35,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)UserSessionsCommand.lookupUser)]
-            public virtual Task<NullStruct> LookupUserAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<UserData> LookupUserAsync(UserIdentification request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -189,9 +189,9 @@ namespace Blaze3SDK.Components
             {
                 return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, new NullStruct());
             }
-            public Task<NullStruct> LookupUserAsync()
+            public Task<UserData> LookupUserAsync()
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, new NullStruct());
+                return Connection.SendRequestAsync<UserIdentification, UserData, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, new UserIdentification());
             }
             
             public UserDataResponse LookupUsers(LookupUsersRequest request)
@@ -371,9 +371,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)UserSessionsCommand.lookupUser)]
-            public virtual Task<NullStruct> LookupUserAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<UserData> LookupUserAsync(UserIdentification request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, request);
+                return context.ClientConnection.SendRequestAsync<UserIdentification, UserData, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, request);
             }
             
             [BlazeCommand((ushort)UserSessionsCommand.lookupUsers)]

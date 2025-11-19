@@ -60,7 +60,7 @@ namespace Tdf
             if (reader == null)
                 return false;
             bool res = reader(stream, ref instance, field);
-            //Console.WriteLine($"ReadTdf: {tdfMember} {baseType} {field?.Name} {res}");
+            // Console.WriteLine($"ReadTdf: {tdfMember} {baseType} {field?.Name} {res}");
             return res;
         }
 

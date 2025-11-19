@@ -10,7 +10,7 @@ namespace Blaze3SDK.Blaze.Authentication
 		public string mIsoCountryCode;
 
 		[TdfMember("PTFM")]
-		public string mPlatform;
+		public ExternalSystemId mPlatform;
 
 	}
 }
