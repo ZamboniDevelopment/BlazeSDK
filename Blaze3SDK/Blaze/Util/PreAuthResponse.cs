@@ -2,51 +2,48 @@ using Tdf;
 
 namespace Blaze3SDK.Blaze.Util
 {
-	[TdfStruct]
-	public struct PreAuthResponse
-	{
+    [TdfStruct]
+    public struct PreAuthResponse
+    {
+		
+        [TdfMember("ASRC")]
+        public string mAuthenticationSource;
 
-		[TdfMember("ANON")]
-		public bool mAnonymousChildAccountsEnabled;
+        [TdfMember("CIDS")]
+        public List<ushort> mComponentIds;
 
-		[TdfMember("ASRC")]
-		public string mAuthenticationSource;
+        [TdfMember("CONF")]
+        public FetchConfigResponse mConfig;
 
-		[TdfMember("CIDS")]
-		public List<ushort> mComponentIds;
+        [TdfMember("EEFA")]
+        public int mEEFA; //MIGHT BE SOME ENUM
 
-		[TdfMember("CONF")]
-		public FetchConfigResponse mConfig;
+        [TdfMember("ESRC")]
+        public string mESRC;
+		
+        [TdfMember("INST")]
+        public string mINST;
+		
+        [TdfMember("MINR")]
+        public bool mUnderageSupported; //MIGHT BE SOME ENUM
+		
+        [TdfMember("NASP")]
+        public string mPersonaNamespace;
+		
+        [TdfMember("PILD")]
+        public string mLegalDocGameIdentifier;
 
-		[TdfMember("INST")]
-		public string mInstanceName;
+        [TdfMember("PLAT")]
+        public string mPlatform;
 
-		[TdfMember("PILD")]
-		public string mLegalDocGameIdentifier;
+        [TdfMember("QOSS")]
+        public QosConfigInfo mQosSettings;
 
-		[TdfMember("CNGN")]
-		public string mParentalConsentEntitlementGroupName;
+        [TdfMember("RSRC")]
+        public string mRegistrationSource;
 
-		[TdfMember("PTAG")]
-		public string mParentalConsentEntitlementTag;
+        [TdfMember("SVER")]
+        public string mServerVersion;
 
-		[TdfMember("NASP")]
-		public string mPersonaNamespace;
-
-		[TdfMember("PLAT")]
-		public string mPlatform;
-
-		[TdfMember("QOSS")]
-		public QosConfigInfo mQosSettings;
-
-		[TdfMember("RSRC")]
-		public string mRegistrationSource;
-
-		[TdfMember("SVER")]
-		public string mServerVersion;
-
-		[TdfMember("MINR")]
-		public bool mUnderageSupported;
-
-	}
+    }
 }

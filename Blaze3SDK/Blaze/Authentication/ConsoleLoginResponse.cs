@@ -2,36 +2,27 @@ using Tdf;
 
 namespace Blaze3SDK.Blaze.Authentication
 {
-	[TdfStruct]
-	public struct ConsoleLoginResponse
-	{
+    [TdfStruct]
+    public struct ConsoleLoginResponse
+    {
 
-		[TdfMember("AGUP")]
-		public bool mCanAgeUp;
+        [TdfMember("AGUP")]
+        public bool mCanAgeUp;
 
-		[TdfMember("SPAM")]
-		public bool mIsOfLegalContactAge;
+        [TdfMember("ANON")]
+        public bool mANON;
+		
+        [TdfMember("NTOS")]
+        public bool mNeedsLegalDoc;
+		
+        [TdfMember("SESS")]
+        public SessionInfo mSessionInfo;
+		
+        [TdfMember("SPAM")]
+        public bool mIsOfLegalContactAge;
+		
+        [TdfMember("UNDR")]
+        public bool mIsUnderAge;
 
-		[TdfMember("LDHT")]
-		public string mLegalDocHost;
-
-		[TdfMember("NTOS")]
-		public bool mNeedsLegalDoc;
-
-		[TdfMember("PRIV")]
-		public string mPrivacyPolicyUri;
-
-		[TdfMember("SESS")]
-		public SessionInfo mSessionInfo;
-
-		[TdfMember("TSUI")]
-		public string mTermsOfServiceUri;
-
-		[TdfMember("THST")]
-		public string mTosHost;
-
-		[TdfMember("TURI")]
-		public string mTosUri;
-
-	}
+    }
 }
