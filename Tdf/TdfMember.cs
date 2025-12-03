@@ -57,7 +57,7 @@ namespace Tdf
             Bytes = Bytes.Take(TAG_LENGTH).ToArray();
         }
 
-        private TdfMember(byte[] tagBytes)
+        public TdfMember(byte[] tagBytes)
         {
             if (tagBytes == null)
                 throw new ArgumentNullException(nameof(tagBytes));
