@@ -138,6 +138,11 @@ namespace Blaze3SDK.Components
                 return connection.NotifyAsync(UserSessionsBase.Id, (ushort)UserSessionsNotification.UserUpdated, notification, waitUntilFree);
             }
             
+            public static Task NotifyUserAuthenticated(BlazeServerConnection connection, NotifyUserAuthenticated notification, bool waitUntilFree = false)
+            {
+                return connection.NotifyAsync(UserSessionsBase.Id, (ushort)UserSessionsNotification.UserAuthenticated, notification, waitUntilFree);
+            }
+            
             public override Type GetCommandRequestType(UserSessionsCommand command) => UserSessionsBase.GetCommandRequestType(command);
             public override Type GetCommandResponseType(UserSessionsCommand command) => UserSessionsBase.GetCommandResponseType(command);
             public override Type GetCommandErrorResponseType(UserSessionsCommand command) => UserSessionsBase.GetCommandErrorResponseType(command);
@@ -479,6 +484,12 @@ namespace Blaze3SDK.Components
                 return Task.FromResult(notification);
             }
             
+            [BlazeNotification((ushort)UserSessionsNotification.UserUpdated)]
+            public virtual Task<NotifyUserAuthenticated> OnUserAuthenticatedAsync(NotifyUserAuthenticated notification)
+            {
+                return Task.FromResult(notification);
+            }
+            
             public override Type GetCommandRequestType(UserSessionsCommand command) => UserSessionsBase.GetCommandRequestType(command);
             public override Type GetCommandResponseType(UserSessionsCommand command) => UserSessionsBase.GetCommandResponseType(command);
             public override Type GetCommandErrorResponseType(UserSessionsCommand command) => UserSessionsBase.GetCommandErrorResponseType(command);
@@ -556,6 +567,7 @@ namespace Blaze3SDK.Components
             UserSessionsNotification.UserRemoved => typeof(NotifyUserRemoved),
             UserSessionsNotification.UserSessionDisconnected => typeof(UserSessionDisconnectReason),
             UserSessionsNotification.UserUpdated => typeof(UserStatus),
+            UserSessionsNotification.UserAuthenticated => typeof(NotifyUserAuthenticated),
             _ => typeof(NullStruct)
         };
         
@@ -586,6 +598,7 @@ namespace Blaze3SDK.Components
             UserRemoved = 3,
             UserSessionDisconnected = 4,
             UserUpdated = 5,
+            UserAuthenticated = 8,
         }
         
     }

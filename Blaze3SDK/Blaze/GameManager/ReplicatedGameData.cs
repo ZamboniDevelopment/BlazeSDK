@@ -11,99 +11,102 @@ namespace Blaze3SDK.Blaze.GameManager
 		[TdfMember("ADMN")]
 		public List<long> mAdminPlayerList;
 
-		[TdfMember("CRIT")]
-		public SortedDictionary<string, string> mEntryCriteriaMap;
-
 		[TdfMember("ATTR")]
 		public SortedDictionary<string, string> mGameAttribs;
+		
+		[TdfMember("CAP")]
+		public List<ushort> mSlotCapacities;
+		
+		[TdfMember("CRIT")]
+		public SortedDictionary<string, string> mEntryCriteriaMap;
 
 		[TdfMember("GID")]
 		public uint mGameId;
 
 		[TdfMember("GNAM")]
 		public string mGameName;
-
+		
 		[TdfMember("GPVH")]
 		public ulong mGameProtocolVersionHash;
-
-		[TdfMember("VSTR")]
-		public string mGameProtocolVersionString;
-
-		[TdfMember("GSID")]
-		public ulong mGameReportingId;
-
+		
 		[TdfMember("GSET")]
 		public GameSettings mGameSettings;
-
+		
+		[TdfMember("GSID")]
+		public ulong mGameReportingId;
+		
 		[TdfMember("GSTA")]
 		public GameState mGameState;
-
+		
 		[TdfMember("GTYP")]
 		public string mGameTypeName;
-
+		
+		[TdfMember("GURL")]
+		public string mGameStatusUrl;
+		
 		[TdfMember("HNET")]
 		public List<NetworkAddress> mHostNetworkAddressList;
-
+		
+		[TdfMember("HSES")]
+		public ulong mTopologyHostSessionId;
+		
 		[TdfMember("IGNO")]
 		public bool mIgnoreEntryCriteriaWithInvite;
-
-		[TdfMember("MCAP")]
-		public ushort mMaxPlayerCapacity;
-
+		
 		[TdfMember("MATR")]
 		public SortedDictionary<string, string> mMeshAttribs;
-
+		
+		[TdfMember("MCAP")]
+		public ushort mMaxPlayerCapacity;
+		
 		[TdfMember("NQOS")]
 		public Util.NetworkQosData mNetworkQosData;
+		
+		[TdfMember("NRES")]
+		public bool mServerNotResetable;
 
 		[TdfMember("NTOP")]
 		public GameNetworkTopology mNetworkTopology;
-
+		
 		[TdfMember("PGID")]
 		public string mPersistedGameId;
 
 		[TdfMember("PGSR")]
 		public byte[] mPersistedGameIdSecret;
 
+		[TdfMember("PHST")]
+		public HostInfo mPlatformHostInfo;
+		
+		[TdfMember("PRES")]
+		public PresenceMode mPresenceMode;
+		
 		[TdfMember("PSAS")]
 		public string mPingSiteAlias;
 
-		[TdfMember("PHST")]
-		public HostInfo mPlatformHostInfo;
-
-		[TdfMember("PRES")]
-		public PresenceMode mPresenceMode;
-
 		[TdfMember("QCAP")]
 		public ushort mQueueCapacity;
-
-		[TdfMember("NRES")]
-		public bool mServerNotResetable;
-
+		
 		[TdfMember("SEED")]
 		public uint mSharedSeed;
 
-		[TdfMember("CAP")]
-		public List<ushort> mSlotCapacities;
-
 		[TdfMember("TCAP")]
-		public List<TeamCapacity> mTeamCapacity;
-
-		[TdfMember("TIDS")]
-		public List<ushort> mTeamIds;
+		public ushort mTeamCapacity;
 
 		[TdfMember("THST")]
 		public HostInfo mTopologyHostInfo;
-
-		[TdfMember("HSES")]
-		public uint mTopologyHostSessionId;
-
+		
+		[TdfMember("TIDS")]
+		public List<ushort> mTeamIds;
+		
 		[TdfMember("UUID")]
 		public string mUUID;
 
 		[TdfMember("VOIP")]
 		public VoipTopology mVoipNetwork;
 
+		[TdfMember("VSTR")]
+		public string mGameProtocolVersionString;
+		
 		[TdfMember("XNNC")]
 		public byte[] mXnetNonce;
 

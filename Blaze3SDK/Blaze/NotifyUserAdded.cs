@@ -6,9 +6,6 @@ namespace Blaze3SDK.Blaze
 	public struct NotifyUserAdded
 	{
 
-		[TdfMember("DATA")]
-		public UserSessionExtendedData mExtendedData;
-
 		[TdfMember("USER")]
 		public UserIdentification mUserInfo;
 

@@ -6,38 +6,29 @@ namespace Blaze3SDK.Blaze.GameManager
 	public struct ReplicatedGamePlayer
 	{
 
+		[TdfMember("BLOB")]
+		public byte[] mCustomData;
+		
+		[TdfMember("EXID")]
+		public ulong mExternalId;
+		
+		[TdfMember("GID")]
+		public uint mGameId;
+		
 		[TdfMember("LOC")]
 		public uint mAccountLocale;
 
-		[TdfMember("BLOB")]
-		public byte[] mCustomData;
-
-		[TdfMember("EXID")]
-		public ulong mExternalId;
-
-		[TdfMember("GID")]
-		public uint mGameId;
-
-		[TdfMember("TIME")]
-		public long mJoinedGameTimestamp;
-
-		[TdfMember("PNET")]
-		public NetworkAddress mNetworkAddress;
+		[TdfMember("NAME")]
+		public string mPlayerName;
 
 		[TdfMember("PATT")]
 		public SortedDictionary<string, string> mPlayerAttribs;
 
 		[TdfMember("PID")]
 		public long mPlayerId;
-
-		[TdfMember("NAME")]
-		public string mPlayerName;
-
-		[TdfMember("UID")]
-		public uint mPlayerSessionId;
-
-		[TdfMember("STAT")]
-		public PlayerState mPlayerState;
+		
+		[TdfMember("PNET")]
+		public NetworkAddress mNetworkAddress;
 
 		[TdfMember("SID")]
 		public byte mSlotId;
@@ -45,14 +36,20 @@ namespace Blaze3SDK.Blaze.GameManager
 		[TdfMember("SLOT")]
 		public SlotType mSlotType;
 
+		[TdfMember("STAT")]
+		public PlayerState mPlayerState;
+		
 		[TdfMember("TIDX")]
 		public ushort mTeamIndex;
 		
-		[TdfMember("TEAM")]
-		public ushort mTeam;
+		[TdfMember("TIME")]
+		public long mJoinedGameTimestamp;
 
 		[TdfMember("UGID")]
 		public BlazeObjectId mUserGroupId;
+
+		[TdfMember("UID")]
+		public ulong mPlayerSessionId;
 
 	}
 }

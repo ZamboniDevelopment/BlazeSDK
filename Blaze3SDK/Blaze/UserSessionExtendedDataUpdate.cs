@@ -7,10 +7,10 @@ namespace Blaze3SDK.Blaze
 	{
 
 		[TdfMember("DATA")]
-		public UserSessionExtendedData mExtendedData;
+		public List<UserSessionExtendedData> mExtendedData;
 
-		[TdfMember("USID")]
-		public long mUserId;
+		// [TdfMember("USID")]
+		// public long mUserId;
 
 	}
 }

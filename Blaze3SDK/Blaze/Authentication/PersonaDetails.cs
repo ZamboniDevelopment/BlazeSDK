@@ -16,7 +16,7 @@ namespace Blaze3SDK.Blaze.Authentication
         public long mPersonaId;
 		
         [TdfMember("PLAT")]
-        public string mPlatform;
+        public ExternalSystemId mPlatform;
 		
         [TdfMember("STAS")]
         public PersonaStatus mStatus;
