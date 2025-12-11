@@ -143,7 +143,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)GameManagerCommand.resetDedicatedServer)]
-            public virtual Task<NullStruct> ResetDedicatedServerAsync(CreateGameRequest request, BlazeRpcContext context)
+            public virtual Task<JoinGameResponse> ResetDedicatedServerAsync(CreateGameRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -463,6 +463,11 @@ namespace Blaze3SDK.Components
                 return connection.NotifyAsync(GameManagerBase.Id, (ushort)GameManagerNotification.NotifyGameNameChange, notification, waitUntilFree);
             }
             
+            public static Task NotifySelectedAsHostAsync(BlazeServerConnection connection, NotifySelectedAsHost notification, bool waitUntilFree = false)
+            {
+                return connection.NotifyAsync(GameManagerBase.Id, (ushort)GameManagerNotification.NotifySelectedAsHost, notification, waitUntilFree);
+            }
+            
             public override Type GetCommandRequestType(GameManagerCommand command) => GameManagerBase.GetCommandRequestType(command);
             public override Type GetCommandResponseType(GameManagerCommand command) => GameManagerBase.GetCommandResponseType(command);
             public override Type GetCommandErrorResponseType(GameManagerCommand command) => GameManagerBase.GetCommandErrorResponseType(command);
@@ -672,13 +677,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<UpdateGameHostMigrationStatusRequest, NullStruct, NullStruct>(this, (ushort)GameManagerCommand.updateGameHostMigrationStatus, request);
             }
             
-            public NullStruct ResetDedicatedServer(CreateGameRequest request)
+            public JoinGameResponse ResetDedicatedServer(CreateGameRequest request)
             {
-                return Connection.SendRequest<CreateGameRequest, NullStruct, NullStruct>(this, (ushort)GameManagerCommand.resetDedicatedServer, request);
+                return Connection.SendRequest<CreateGameRequest, JoinGameResponse, NullStruct>(this, (ushort)GameManagerCommand.resetDedicatedServer, request);
             }
-            public Task<NullStruct> ResetDedicatedServerAsync(CreateGameRequest request)
+            public Task<JoinGameResponse> ResetDedicatedServerAsync(CreateGameRequest request)
             {
-                return Connection.SendRequestAsync<CreateGameRequest, NullStruct, NullStruct>(this, (ushort)GameManagerCommand.resetDedicatedServer, request);
+                return Connection.SendRequestAsync<CreateGameRequest, JoinGameResponse, NullStruct>(this, (ushort)GameManagerCommand.resetDedicatedServer, request);
             }
             
             public NullStruct UpdateGameSession(UpdateGameSessionRequest request)
@@ -1129,6 +1134,13 @@ namespace Blaze3SDK.Components
                 return Task.CompletedTask;
             }
             
+            [BlazeNotification((ushort)GameManagerNotification.NotifySelectedAsHost)]
+            public virtual Task OnNotifySelectedAsHostAsync(NotifySelectedAsHost notification)
+            {
+                _logger.Warn($"{GetType().FullName}: OnNotifyCreateDynamicDedicatedServerGameAsync NOT IMPLEMENTED!");
+                return Task.CompletedTask;
+            }
+            
             [BlazeNotification((ushort)GameManagerNotification.NotifyGameNameChange)]
             public virtual Task OnNotifyGameNameChangeAsync(NotifyGameNameChange notification)
             {
@@ -1277,9 +1289,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)GameManagerCommand.resetDedicatedServer)]
-            public virtual Task<NullStruct> ResetDedicatedServerAsync(CreateGameRequest request, BlazeProxyContext context)
+            public virtual Task<JoinGameResponse> ResetDedicatedServerAsync(CreateGameRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<CreateGameRequest, NullStruct, NullStruct>(this, (ushort)GameManagerCommand.resetDedicatedServer, request);
+                return context.ClientConnection.SendRequestAsync<CreateGameRequest, JoinGameResponse, NullStruct>(this, (ushort)GameManagerCommand.resetDedicatedServer, request);
             }
             
             [BlazeCommand((ushort)GameManagerCommand.updateGameSession)]
@@ -1631,6 +1643,12 @@ namespace Blaze3SDK.Components
                 return Task.FromResult(notification);
             }
             
+            [BlazeNotification((ushort)GameManagerNotification.NotifySelectedAsHost)]
+            public virtual Task<NotifySelectedAsHost> OnNotifySelectedAsHostAsync(NotifySelectedAsHost notification)
+            {
+                return Task.FromResult(notification);
+            }
+            
             public override Type GetCommandRequestType(GameManagerCommand command) => GameManagerBase.GetCommandRequestType(command);
             public override Type GetCommandResponseType(GameManagerCommand command) => GameManagerBase.GetCommandResponseType(command);
             public override Type GetCommandErrorResponseType(GameManagerCommand command) => GameManagerBase.GetCommandErrorResponseType(command);
@@ -1712,7 +1730,7 @@ namespace Blaze3SDK.Components
             GameManagerCommand.leaveGameByGroup => typeof(NullStruct),
             GameManagerCommand.migrateGame => typeof(NullStruct),
             GameManagerCommand.updateGameHostMigrationStatus => typeof(NullStruct),
-            GameManagerCommand.resetDedicatedServer => typeof(NullStruct),
+            GameManagerCommand.resetDedicatedServer => typeof(JoinGameResponse),
             GameManagerCommand.updateGameSession => typeof(NullStruct),
             GameManagerCommand.banPlayer => typeof(NullStruct),
             GameManagerCommand.updateMeshConnection => typeof(NullStruct),
@@ -1827,6 +1845,7 @@ namespace Blaze3SDK.Components
             GameManagerNotification.NotifyAdminListChange => typeof(NotifyAdminListChange),
             GameManagerNotification.NotifyCreateDynamicDedicatedServerGame => typeof(NotifyCreateDynamicDedicatedServerGame),
             GameManagerNotification.NotifyGameNameChange => typeof(NotifyGameNameChange),
+            GameManagerNotification.NotifySelectedAsHost => typeof(NotifySelectedAsHost),
             _ => typeof(NullStruct)
         };
         
@@ -1916,6 +1935,7 @@ namespace Blaze3SDK.Components
             NotifyAdminListChange = 202,
             NotifyCreateDynamicDedicatedServerGame = 220,
             NotifyGameNameChange = 230,
+            NotifySelectedAsHost = 231,
         }
         
     }

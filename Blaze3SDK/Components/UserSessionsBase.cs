@@ -185,13 +185,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<UpdateHardwareFlagsRequest, NullStruct, NullStruct>(this, (ushort)UserSessionsCommand.updateHardwareFlags, request);
             }
             
-            public NullStruct LookupUser()
+            public UserData LookupUser(UserIdentification request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, new NullStruct());
+                return Connection.SendRequest<UserIdentification, UserData, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, request);
             }
-            public Task<UserData> LookupUserAsync()
+            public Task<UserData> LookupUserAsync(UserIdentification request)
             {
-                return Connection.SendRequestAsync<UserIdentification, UserData, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, new UserIdentification());
+                return Connection.SendRequestAsync<UserIdentification, UserData, NullStruct>(this, (ushort)UserSessionsCommand.lookupUser, request);
             }
             
             public UserDataResponse LookupUsers(LookupUsersRequest request)
@@ -491,7 +491,7 @@ namespace Blaze3SDK.Components
             UserSessionsCommand.fetchExtendedData => typeof(NullStruct),
             UserSessionsCommand.updateExtendedDataAttribute => typeof(NullStruct),
             UserSessionsCommand.updateHardwareFlags => typeof(UpdateHardwareFlagsRequest),
-            UserSessionsCommand.lookupUser => typeof(NullStruct),
+            UserSessionsCommand.lookupUser => typeof(UserIdentification),
             UserSessionsCommand.lookupUsers => typeof(LookupUsersRequest),
             UserSessionsCommand.lookupUsersByPrefix => typeof(LookupUsersByPrefixRequest),
             UserSessionsCommand.updateNetworkInfo => typeof(NetworkInfo),
@@ -512,7 +512,7 @@ namespace Blaze3SDK.Components
             UserSessionsCommand.fetchExtendedData => typeof(NullStruct),
             UserSessionsCommand.updateExtendedDataAttribute => typeof(NullStruct),
             UserSessionsCommand.updateHardwareFlags => typeof(NullStruct),
-            UserSessionsCommand.lookupUser => typeof(NullStruct),
+            UserSessionsCommand.lookupUser => typeof(UserData),
             UserSessionsCommand.lookupUsers => typeof(UserDataResponse),
             UserSessionsCommand.lookupUsersByPrefix => typeof(NullStruct),
             UserSessionsCommand.updateNetworkInfo => typeof(NullStruct),
