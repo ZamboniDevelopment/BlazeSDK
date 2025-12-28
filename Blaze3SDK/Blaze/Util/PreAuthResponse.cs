@@ -16,7 +16,7 @@ namespace Blaze3SDK.Blaze.Util
         public FetchConfigResponse mConfig;
 
         [TdfMember("EEFA")]
-        public int mEEFA; //MIGHT BE SOME ENUM
+        public bool mEEFA;
 
         [TdfMember("ESRC")]
         public string mESRC;
@@ -25,7 +25,7 @@ namespace Blaze3SDK.Blaze.Util
         public string mINST;
 		
         [TdfMember("MINR")]
-        public bool mUnderageSupported; //MIGHT BE SOME ENUM
+        public bool mUnderageSupported;
 		
         [TdfMember("NASP")]
         public string mPersonaNamespace;

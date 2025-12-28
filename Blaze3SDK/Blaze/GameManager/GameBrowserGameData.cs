@@ -22,7 +22,7 @@ namespace Blaze3SDK.Blaze.GameManager
 		public List<GameBrowserTeamInfo> mGameBrowserTeamInfoVector;
 
 		[TdfMember("GID")]
-		public uint mGameId;
+		public ulong mGameId;
 
 		[TdfMember("GNAM")]
 		public string mGameName;

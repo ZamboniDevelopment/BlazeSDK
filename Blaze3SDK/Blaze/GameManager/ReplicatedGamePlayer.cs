@@ -13,7 +13,7 @@ namespace Blaze3SDK.Blaze.GameManager
 		public ulong mExternalId;
 		
 		[TdfMember("GID")]
-		public uint mGameId;
+		public ulong mGameId;
 		
 		[TdfMember("LOC")]
 		public uint mAccountLocale;

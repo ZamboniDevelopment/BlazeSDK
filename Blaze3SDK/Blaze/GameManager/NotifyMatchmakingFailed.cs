@@ -13,10 +13,10 @@ namespace Blaze3SDK.Blaze.GameManager
 		public uint mMaxPossibleFitScore;
 
 		[TdfMember("MSID")]
-		public uint mSessionId;
+		public ulong mSessionId;
 
 		[TdfMember("USID")]
-		public uint mUserSessionId;
+		public ulong mUserSessionId;
 
 	}
 }

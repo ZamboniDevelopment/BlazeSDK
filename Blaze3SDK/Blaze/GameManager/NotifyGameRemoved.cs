@@ -10,7 +10,7 @@ namespace Blaze3SDK.Blaze.GameManager
 		public GameDestructionReason mDestructionReason;
 
 		[TdfMember("GID")]
-		public uint mGameId;
+		public ulong mGameId;
 
 	}
 }
