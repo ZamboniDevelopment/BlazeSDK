@@ -23,7 +23,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)MessagingComponentCommand.fetchMessages)]
-            public virtual Task<NullStruct> FetchMessagesAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<FetchMessageResponse> FetchMessagesAsync(FetchMessageRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -81,13 +81,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)MessagingComponentCommand.sendMessage, new NullStruct());
             }
             
-            public NullStruct FetchMessages()
+            public FetchMessageResponse FetchMessages(FetchMessageRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)MessagingComponentCommand.fetchMessages, new NullStruct());
+                return Connection.SendRequest<FetchMessageRequest, FetchMessageResponse, NullStruct>(this, (ushort)MessagingComponentCommand.fetchMessages, request);
             }
-            public Task<NullStruct> FetchMessagesAsync()
+            public Task<FetchMessageResponse> FetchMessagesAsync(FetchMessageRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)MessagingComponentCommand.fetchMessages, new NullStruct());
+                return Connection.SendRequestAsync<FetchMessageRequest, FetchMessageResponse, NullStruct>(this, (ushort)MessagingComponentCommand.fetchMessages, request);
             }
             
             public NullStruct PurgeMessages()
@@ -146,9 +146,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)MessagingComponentCommand.fetchMessages)]
-            public virtual Task<NullStruct> FetchMessagesAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<FetchMessageResponse> FetchMessagesAsync(FetchMessageRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)MessagingComponentCommand.fetchMessages, request);
+                return context.ClientConnection.SendRequestAsync<FetchMessageRequest, FetchMessageResponse, NullStruct>(this, (ushort)MessagingComponentCommand.fetchMessages, request);
             }
             
             [BlazeCommand((ushort)MessagingComponentCommand.purgeMessages)]
@@ -186,7 +186,7 @@ namespace Blaze3SDK.Components
         public static Type GetCommandRequestType(MessagingComponentCommand command) => command switch
         {
             MessagingComponentCommand.sendMessage => typeof(NullStruct),
-            MessagingComponentCommand.fetchMessages => typeof(NullStruct),
+            MessagingComponentCommand.fetchMessages => typeof(FetchMessageRequest),
             MessagingComponentCommand.purgeMessages => typeof(NullStruct),
             MessagingComponentCommand.touchMessages => typeof(NullStruct),
             MessagingComponentCommand.getMessages => typeof(NullStruct),
@@ -196,7 +196,7 @@ namespace Blaze3SDK.Components
         public static Type GetCommandResponseType(MessagingComponentCommand command) => command switch
         {
             MessagingComponentCommand.sendMessage => typeof(NullStruct),
-            MessagingComponentCommand.fetchMessages => typeof(NullStruct),
+            MessagingComponentCommand.fetchMessages => typeof(FetchMessageResponse),
             MessagingComponentCommand.purgeMessages => typeof(NullStruct),
             MessagingComponentCommand.touchMessages => typeof(NullStruct),
             MessagingComponentCommand.getMessages => typeof(NullStruct),

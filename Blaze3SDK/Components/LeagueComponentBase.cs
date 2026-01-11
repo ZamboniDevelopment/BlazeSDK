@@ -1,3 +1,4 @@
+using Blaze3SDK.Blaze.Example;
 using Blaze3SDK.Blaze.League;
 using BlazeCommon;
 using NLog;
@@ -35,7 +36,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getLeaguesByUser)]
-            public virtual Task<NullStruct> GetLeaguesByUserAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<FindLeaguesResponse> GetLeaguesByUserAsync(GetLeaguesByUserRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -249,13 +250,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, new NullStruct());
             }
             
-            public NullStruct GetLeaguesByUser()
+            public FindLeaguesResponse GetLeaguesByUser(GetLeaguesByUserRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeaguesByUser, new NullStruct());
+                return Connection.SendRequest<GetLeaguesByUserRequest, FindLeaguesResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getLeaguesByUser, request);
             }
-            public Task<NullStruct> GetLeaguesByUserAsync()
+            public Task<FindLeaguesResponse> GetLeaguesByUserAsync(GetLeaguesByUserRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeaguesByUser, new NullStruct());
+                return Connection.SendRequestAsync<GetLeaguesByUserRequest, FindLeaguesResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getLeaguesByUser, request);
             }
             
             public NullStruct DeleteLeague()
@@ -533,9 +534,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getLeaguesByUser)]
-            public virtual Task<NullStruct> GetLeaguesByUserAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<FindLeaguesResponse> GetLeaguesByUserAsync(GetLeaguesByUserRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeaguesByUser, request);
+                return context.ClientConnection.SendRequestAsync<GetLeaguesByUserRequest, FindLeaguesResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getLeaguesByUser, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.deleteLeague)]
@@ -713,7 +714,7 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.createLeague => typeof(NullStruct),
             LeagueComponentCommand.joinLeague => typeof(NullStruct),
             LeagueComponentCommand.getLeague => typeof(NullStruct),
-            LeagueComponentCommand.getLeaguesByUser => typeof(NullStruct),
+            LeagueComponentCommand.getLeaguesByUser => typeof(GetLeaguesByUserRequest),
             LeagueComponentCommand.deleteLeague => typeof(NullStruct),
             LeagueComponentCommand.promoteToGM => typeof(NullStruct),
             LeagueComponentCommand.findLeagues => typeof(NullStruct),
@@ -748,7 +749,7 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.createLeague => typeof(NullStruct),
             LeagueComponentCommand.joinLeague => typeof(NullStruct),
             LeagueComponentCommand.getLeague => typeof(NullStruct),
-            LeagueComponentCommand.getLeaguesByUser => typeof(NullStruct),
+            LeagueComponentCommand.getLeaguesByUser => typeof(FindLeaguesResponse),
             LeagueComponentCommand.deleteLeague => typeof(NullStruct),
             LeagueComponentCommand.promoteToGM => typeof(NullStruct),
             LeagueComponentCommand.findLeagues => typeof(NullStruct),
