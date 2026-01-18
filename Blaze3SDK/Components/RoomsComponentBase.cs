@@ -18,7 +18,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)RoomsComponentCommand.selectViewUpdates)]
-            public virtual Task<ExampleResponse> SelectViewUpdatesAsync(SelectViewUpdatesRequest request, BlazeRpcContext context)
+            public virtual Task<NullStruct> SelectViewUpdatesAsync(SelectViewUpdatesRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -261,13 +261,13 @@ namespace Blaze3SDK.Components
             }
             
             
-            public ExampleResponse SelectViewUpdates(SelectViewUpdatesRequest request)
+            public NullStruct SelectViewUpdates(SelectViewUpdatesRequest request)
             {
-                return Connection.SendRequest<SelectViewUpdatesRequest,ExampleResponse, NullStruct>(this, (ushort)RoomsComponentCommand.selectViewUpdates, request);
+                return Connection.SendRequest<SelectViewUpdatesRequest,NullStruct, NullStruct>(this, (ushort)RoomsComponentCommand.selectViewUpdates, request);
             }
-            public Task<ExampleResponse> SelectViewUpdatesAsync(SelectViewUpdatesRequest request)
+            public Task<NullStruct> SelectViewUpdatesAsync(SelectViewUpdatesRequest request)
             {
-                return Connection.SendRequestAsync<SelectViewUpdatesRequest, ExampleResponse, NullStruct>(this, (ushort)RoomsComponentCommand.selectViewUpdates, request);
+                return Connection.SendRequestAsync<SelectViewUpdatesRequest, NullStruct, NullStruct>(this, (ushort)RoomsComponentCommand.selectViewUpdates, request);
             }
             
             public NullStruct SelectCategoryUpdates()
@@ -603,9 +603,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)RoomsComponentCommand.selectViewUpdates)]
-            public virtual Task<ExampleResponse> SelectViewUpdatesAsync(SelectViewUpdatesRequest request, BlazeProxyContext context)
+            public virtual Task<NullStruct> SelectViewUpdatesAsync(SelectViewUpdatesRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<SelectViewUpdatesRequest, ExampleResponse, NullStruct>(this, (ushort)RoomsComponentCommand.selectViewUpdates, request);
+                return context.ClientConnection.SendRequestAsync<SelectViewUpdatesRequest, NullStruct, NullStruct>(this, (ushort)RoomsComponentCommand.selectViewUpdates, request);
             }
             
             [BlazeCommand((ushort)RoomsComponentCommand.selectCategoryUpdates)]
@@ -880,7 +880,7 @@ namespace Blaze3SDK.Components
         
         public static Type GetCommandResponseType(RoomsComponentCommand command) => command switch
         {
-            RoomsComponentCommand.selectViewUpdates => typeof(ExampleResponse),
+            RoomsComponentCommand.selectViewUpdates => typeof(NullStruct),
             RoomsComponentCommand.selectCategoryUpdates => typeof(NullStruct),
             RoomsComponentCommand.joinRoom => typeof(NullStruct),
             RoomsComponentCommand.leaveRoom => typeof(NullStruct),
