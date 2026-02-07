@@ -1,3 +1,4 @@
+using Blaze3SDK.Blaze.Locker;
 using BlazeCommon;
 using NLog;
 
@@ -64,7 +65,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LockerComponentCommand.ListContent)]
-            public virtual Task<NullStruct> ListContentAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<ListContentResponse> ListContentAsync(ListContentRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -226,9 +227,9 @@ namespace Blaze3SDK.Components
             {
                 return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LockerComponentCommand.ListContent, new NullStruct());
             }
-            public Task<NullStruct> ListContentAsync()
+            public Task<ListContentResponse> ListContentAsync(ListContentRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LockerComponentCommand.ListContent, new NullStruct());
+                return Connection.SendRequestAsync<ListContentRequest, ListContentResponse, NullStruct>(this, (ushort)LockerComponentCommand.ListContent, request);
             }
             
             public NullStruct GetTopN()
@@ -385,9 +386,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LockerComponentCommand.ListContent)]
-            public virtual Task<NullStruct> ListContentAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<ListContentResponse> ListContentAsync(ListContentRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LockerComponentCommand.ListContent, request);
+                return context.ClientConnection.SendRequestAsync<ListContentRequest, ListContentResponse, NullStruct>(this, (ushort)LockerComponentCommand.ListContent, request);
             }
             
             [BlazeCommand((ushort)LockerComponentCommand.getTopN)]
@@ -468,7 +469,7 @@ namespace Blaze3SDK.Components
             LockerComponentCommand.copyContentReference => typeof(NullStruct),
             LockerComponentCommand.bookmarkContentReference => typeof(NullStruct),
             LockerComponentCommand.getContentInfo => typeof(NullStruct),
-            LockerComponentCommand.ListContent => typeof(NullStruct),
+            LockerComponentCommand.ListContent => typeof(ListContentRequest),
             LockerComponentCommand.getTopN => typeof(NullStruct),
             LockerComponentCommand.getLeaderboardView => typeof(NullStruct),
             LockerComponentCommand.updateRating => typeof(NullStruct),
@@ -492,7 +493,7 @@ namespace Blaze3SDK.Components
             LockerComponentCommand.copyContentReference => typeof(NullStruct),
             LockerComponentCommand.bookmarkContentReference => typeof(NullStruct),
             LockerComponentCommand.getContentInfo => typeof(NullStruct),
-            LockerComponentCommand.ListContent => typeof(NullStruct),
+            LockerComponentCommand.ListContent => typeof(ListContentResponse),
             LockerComponentCommand.getTopN => typeof(NullStruct),
             LockerComponentCommand.getLeaderboardView => typeof(NullStruct),
             LockerComponentCommand.updateRating => typeof(NullStruct),

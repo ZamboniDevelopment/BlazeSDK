@@ -18,7 +18,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.createLeague)]
-            public virtual Task<NullStruct> CreateLeagueAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<CreateLeagueResponse> CreateLeagueAsync(CreateLeagueRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -30,7 +30,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getLeague)]
-            public virtual Task<NullStruct> GetLeagueAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<League> GetLeagueAsync(GetLeagueRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -96,7 +96,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getNews)]
-            public virtual Task<NullStruct> GetNewsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetNewsResponse> GetNewsAsync(GetNewsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -144,7 +144,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getMembers)]
-            public virtual Task<NullStruct> GetMembersAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetMembersResponse> GetMembersAsync(GetMembersRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -168,7 +168,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getRoster)]
-            public virtual Task<NullStruct> GetRosterAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<Roster> GetRosterAsync(GetRosterRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -223,13 +223,13 @@ namespace Blaze3SDK.Components
             }
             
             
-            public NullStruct CreateLeague()
+            public CreateLeagueResponse CreateLeague(CreateLeagueRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.createLeague, new NullStruct());
+                return Connection.SendRequest<CreateLeagueRequest, CreateLeagueResponse, NullStruct>(this, (ushort)LeagueComponentCommand.createLeague, request);
             }
-            public Task<NullStruct> CreateLeagueAsync()
+            public Task<CreateLeagueResponse> CreateLeagueAsync(CreateLeagueRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.createLeague, new NullStruct());
+                return Connection.SendRequestAsync<CreateLeagueRequest, CreateLeagueResponse, NullStruct>(this, (ushort)LeagueComponentCommand.createLeague, request);
             }
             
             public NullStruct JoinLeague()
@@ -241,13 +241,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.joinLeague, new NullStruct());
             }
             
-            public NullStruct GetLeague()
+            public League GetLeague(GetLeagueRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, new NullStruct());
+                return Connection.SendRequest<GetLeagueRequest, League, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, request);
             }
-            public Task<NullStruct> GetLeagueAsync()
+            public Task<League> GetLeagueAsync(GetLeagueRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, new NullStruct());
+                return Connection.SendRequestAsync<GetLeagueRequest, League, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, request);
             }
             
             public FindLeaguesResponse GetLeaguesByUser(GetLeaguesByUserRequest request)
@@ -340,13 +340,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.postNews, new NullStruct());
             }
             
-            public NullStruct GetNews()
+            public GetNewsResponse GetNews(GetNewsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getNews, new NullStruct());
+                return Connection.SendRequest<GetNewsRequest, GetNewsResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getNews, request);
             }
-            public Task<NullStruct> GetNewsAsync()
+            public Task<GetNewsResponse> GetNewsAsync(GetNewsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getNews, new NullStruct());
+                return Connection.SendRequestAsync<GetNewsRequest, GetNewsResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getNews, request);
             }
             
             public NullStruct SetRoster()
@@ -412,13 +412,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, new NullStruct());
             }
             
-            public NullStruct GetMembers()
+            public GetMembersResponse GetMembers(GetMembersRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getMembers, new NullStruct());
+                return Connection.SendRequest<GetMembersRequest, GetMembersResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getMembers, request);
             }
-            public Task<NullStruct> GetMembersAsync()
+            public Task<GetMembersResponse> GetMembersAsync(GetMembersRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getMembers, new NullStruct());
+                return Connection.SendRequestAsync<GetMembersRequest, GetMembersResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getMembers, request);
             }
             
             public NullStruct SubmitStatistics()
@@ -448,13 +448,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.submitScores, new NullStruct());
             }
             
-            public NullStruct GetRoster()
+            public Roster GetRoster(GetRosterRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getRoster, new NullStruct());
+                return Connection.SendRequest<GetRosterRequest, Roster, NullStruct>(this, (ushort)LeagueComponentCommand.getRoster, request);
             }
-            public Task<NullStruct> GetRosterAsync()
+            public Task<Roster> GetRosterAsync(GetRosterRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getRoster, new NullStruct());
+                return Connection.SendRequestAsync<GetRosterRequest, Roster, NullStruct>(this, (ushort)LeagueComponentCommand.getRoster, request);
             }
             
             public NullStruct RunDraft()
@@ -516,9 +516,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.createLeague)]
-            public virtual Task<NullStruct> CreateLeagueAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<CreateLeagueResponse> CreateLeagueAsync(CreateLeagueRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.createLeague, request);
+                return context.ClientConnection.SendRequestAsync<CreateLeagueRequest, CreateLeagueResponse, NullStruct>(this, (ushort)LeagueComponentCommand.createLeague, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.joinLeague)]
@@ -528,9 +528,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getLeague)]
-            public virtual Task<NullStruct> GetLeagueAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<League> GetLeagueAsync(GetLeagueRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, request);
+                return context.ClientConnection.SendRequestAsync<GetLeagueRequest, League, NullStruct>(this, (ushort)LeagueComponentCommand.getLeague, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getLeaguesByUser)]
@@ -594,9 +594,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getNews)]
-            public virtual Task<NullStruct> GetNewsAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<GetNewsResponse> GetNewsAsync(GetNewsRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getNews, request);
+                return context.ClientConnection.SendRequestAsync<GetNewsRequest, GetNewsResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getNews, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.setRoster)]
@@ -642,9 +642,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getMembers)]
-            public virtual Task<NullStruct> GetMembersAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<GetMembersResponse> GetMembersAsync(GetMembersRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getMembers, request);
+                return context.ClientConnection.SendRequestAsync<GetMembersRequest, GetMembersResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getMembers, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.submitStatistics)]
@@ -666,9 +666,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getRoster)]
-            public virtual Task<NullStruct> GetRosterAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<Roster> GetRosterAsync(GetRosterRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getRoster, request);
+                return context.ClientConnection.SendRequestAsync<GetRosterRequest, Roster, NullStruct>(this, (ushort)LeagueComponentCommand.getRoster, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.runDraft)]
@@ -711,9 +711,9 @@ namespace Blaze3SDK.Components
         
         public static Type GetCommandRequestType(LeagueComponentCommand command) => command switch
         {
-            LeagueComponentCommand.createLeague => typeof(NullStruct),
+            LeagueComponentCommand.createLeague => typeof(CreateLeagueRequest),
             LeagueComponentCommand.joinLeague => typeof(NullStruct),
-            LeagueComponentCommand.getLeague => typeof(NullStruct),
+            LeagueComponentCommand.getLeague => typeof(GetLeagueRequest),
             LeagueComponentCommand.getLeaguesByUser => typeof(GetLeaguesByUserRequest),
             LeagueComponentCommand.deleteLeague => typeof(NullStruct),
             LeagueComponentCommand.promoteToGM => typeof(NullStruct),
@@ -724,7 +724,7 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.updateLeagueSettings => typeof(NullStruct),
             LeagueComponentCommand.setMetadata => typeof(NullStruct),
             LeagueComponentCommand.postNews => typeof(NullStruct),
-            LeagueComponentCommand.getNews => typeof(NullStruct),
+            LeagueComponentCommand.getNews => typeof(GetNewsRequest),
             LeagueComponentCommand.setRoster => typeof(NullStruct),
             LeagueComponentCommand.sendInvitation => typeof(NullStruct),
             LeagueComponentCommand.getInvitations => typeof(NullStruct),
@@ -732,11 +732,11 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.proposeTrade => typeof(NullStruct),
             LeagueComponentCommand.processTrade => typeof(NullStruct),
             LeagueComponentCommand.getTrades => typeof(NullStruct),
-            LeagueComponentCommand.getMembers => typeof(NullStruct),
+            LeagueComponentCommand.getMembers => typeof(GetMembersRequest),
             LeagueComponentCommand.submitStatistics => typeof(NullStruct),
             LeagueComponentCommand.getRecentGames => typeof(NullStruct),
             LeagueComponentCommand.submitScores => typeof(NullStruct),
-            LeagueComponentCommand.getRoster => typeof(NullStruct),
+            LeagueComponentCommand.getRoster => typeof(GetRosterRequest),
             LeagueComponentCommand.runDraft => typeof(NullStruct),
             LeagueComponentCommand.getDraftProfile => typeof(NullStruct),
             LeagueComponentCommand.setDraftProfile => typeof(NullStruct),
@@ -746,9 +746,9 @@ namespace Blaze3SDK.Components
         
         public static Type GetCommandResponseType(LeagueComponentCommand command) => command switch
         {
-            LeagueComponentCommand.createLeague => typeof(NullStruct),
+            LeagueComponentCommand.createLeague => typeof(CreateLeagueResponse),
             LeagueComponentCommand.joinLeague => typeof(NullStruct),
-            LeagueComponentCommand.getLeague => typeof(NullStruct),
+            LeagueComponentCommand.getLeague => typeof(League),
             LeagueComponentCommand.getLeaguesByUser => typeof(FindLeaguesResponse),
             LeagueComponentCommand.deleteLeague => typeof(NullStruct),
             LeagueComponentCommand.promoteToGM => typeof(NullStruct),
@@ -759,7 +759,7 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.updateLeagueSettings => typeof(NullStruct),
             LeagueComponentCommand.setMetadata => typeof(NullStruct),
             LeagueComponentCommand.postNews => typeof(NullStruct),
-            LeagueComponentCommand.getNews => typeof(NullStruct),
+            LeagueComponentCommand.getNews => typeof(GetNewsResponse),
             LeagueComponentCommand.setRoster => typeof(NullStruct),
             LeagueComponentCommand.sendInvitation => typeof(NullStruct),
             LeagueComponentCommand.getInvitations => typeof(NullStruct),
@@ -767,11 +767,11 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.proposeTrade => typeof(NullStruct),
             LeagueComponentCommand.processTrade => typeof(NullStruct),
             LeagueComponentCommand.getTrades => typeof(NullStruct),
-            LeagueComponentCommand.getMembers => typeof(NullStruct),
+            LeagueComponentCommand.getMembers => typeof(GetMembersResponse),
             LeagueComponentCommand.submitStatistics => typeof(NullStruct),
             LeagueComponentCommand.getRecentGames => typeof(NullStruct),
             LeagueComponentCommand.submitScores => typeof(NullStruct),
-            LeagueComponentCommand.getRoster => typeof(NullStruct),
+            LeagueComponentCommand.getRoster => typeof(Roster),
             LeagueComponentCommand.runDraft => typeof(NullStruct),
             LeagueComponentCommand.getDraftProfile => typeof(NullStruct),
             LeagueComponentCommand.setDraftProfile => typeof(NullStruct),

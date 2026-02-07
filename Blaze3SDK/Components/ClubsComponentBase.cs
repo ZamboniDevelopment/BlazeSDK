@@ -1,4 +1,5 @@
 using Blaze3SDK.Blaze.Clubs;
+using Blaze3SDK.Blaze.Example;
 using BlazeCommon;
 using NLog;
 
@@ -131,7 +132,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubsComponentSettings)]
-            public virtual Task<NullStruct> GetClubsComponentSettingsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<ClubsComponentSettings> GetClubsComponentSettingsAsync(NullStruct request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -517,13 +518,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.setMetadata2, new NullStruct());
             }
             
-            public NullStruct GetClubsComponentSettings()
+            public ClubsComponentSettings GetClubsComponentSettings()
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubsComponentSettings, new NullStruct());
+                return Connection.SendRequest<NullStruct, ClubsComponentSettings, NullStruct>(this, (ushort)ClubsComponentCommand.getClubsComponentSettings, new NullStruct());
             }
-            public Task<NullStruct> GetClubsComponentSettingsAsync()
+            public Task<ClubsComponentSettings> GetClubsComponentSettingsAsync()
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubsComponentSettings, new NullStruct());
+                return Connection.SendRequestAsync<NullStruct, ClubsComponentSettings, NullStruct>(this, (ushort)ClubsComponentCommand.getClubsComponentSettings, new NullStruct());
             }
             
             public NullStruct TransferOwnership()
@@ -938,9 +939,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubsComponentSettings)]
-            public virtual Task<NullStruct> GetClubsComponentSettingsAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<ClubsComponentSettings> GetClubsComponentSettingsAsync(NullStruct request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubsComponentSettings, request);
+                return context.ClientConnection.SendRequestAsync<NullStruct, ClubsComponentSettings, NullStruct>(this, (ushort)ClubsComponentCommand.getClubsComponentSettings, request);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.transferOwnership)]
@@ -1218,7 +1219,7 @@ namespace Blaze3SDK.Components
             ClubsComponentCommand.setNewsItemHidden => typeof(NullStruct),
             ClubsComponentCommand.setMetadata => typeof(NullStruct),
             ClubsComponentCommand.setMetadata2 => typeof(NullStruct),
-            ClubsComponentCommand.getClubsComponentSettings => typeof(NullStruct),
+            ClubsComponentCommand.getClubsComponentSettings => typeof(ClubsComponentSettings),
             ClubsComponentCommand.transferOwnership => typeof(NullStruct),
             ClubsComponentCommand.getClubMembershipForUsers => typeof(NullStruct),
             ClubsComponentCommand.sendPetition => typeof(NullStruct),
