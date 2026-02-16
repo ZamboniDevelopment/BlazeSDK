@@ -17,13 +17,13 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.createClub)]
-            public virtual Task<NullStruct> CreateClubAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<CreateClubResponse> CreateClubAsync(CreateClubRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubs)]
-            public virtual Task<NullStruct> GetClubsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetClubsResponse> GetClubsAsync(GetClubsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -71,7 +71,7 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getMembers)]
-            public virtual Task<NullStruct> GetMembersAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetMembersResponse> GetMembersAsync(GetMembersRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -83,19 +83,19 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.updateClubSettings)]
-            public virtual Task<NullStruct> UpdateClubSettingsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<NullStruct> UpdateClubSettingsAsync(UpdateClubSettingsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.postNews)]
-            public virtual Task<NullStruct> PostNewsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<NullStruct> PostNewsAsync(PostNewsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getNews)]
-            public virtual Task<NullStruct> GetNewsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetNewsResponse> GetNewsAsync(GetNewsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -131,7 +131,7 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getPetitions)]
-            public virtual Task<NullStruct> GetPetitionsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetPetitionsResponse> GetPetitionsAsync(GetPetitionsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -179,7 +179,7 @@ namespace Blaze2SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubAwards)]
-            public virtual Task<NullStruct> GetClubAwardsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetClubAwardsResponse> GetClubAwardsAsync(GetClubAwardsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze2RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -281,22 +281,22 @@ namespace Blaze2SDK.Components
             }
             
             
-            public NullStruct CreateClub()
+            public CreateClubResponse CreateClub(CreateClubRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.createClub, new NullStruct());
+                return Connection.SendRequest<CreateClubRequest, CreateClubResponse, NullStruct>(this, (ushort)ClubsComponentCommand.createClub, request);
             }
-            public Task<NullStruct> CreateClubAsync()
+            public Task<CreateClubResponse> CreateClubAsync(CreateClubRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.createClub, new NullStruct());
+                return Connection.SendRequestAsync<CreateClubRequest, CreateClubResponse, NullStruct>(this, (ushort)ClubsComponentCommand.createClub, request);
             }
             
-            public NullStruct GetClubs()
+            public GetClubsResponse GetClubs(GetClubsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, new NullStruct());
+                return Connection.SendRequest<GetClubsRequest, GetClubsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, request);
             }
-            public Task<NullStruct> GetClubsAsync()
+            public Task<GetClubsResponse> GetClubsAsync(GetClubsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, new NullStruct());
+                return Connection.SendRequestAsync<GetClubsRequest, GetClubsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, request);
             }
             
             public FindClubsResponse FindClubs(FindClubsRequest request)
@@ -362,13 +362,13 @@ namespace Blaze2SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.declineInvitation, new NullStruct());
             }
             
-            public NullStruct GetMembers()
+            public GetMembersResponse GetMembers(GetMembersRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getMembers, new NullStruct());
+                return Connection.SendRequest<GetMembersRequest, GetMembersResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getMembers, request);
             }
-            public Task<NullStruct> GetMembersAsync()
+            public Task<GetMembersResponse> GetMembersAsync(GetMembersRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getMembers, new NullStruct());
+                return Connection.SendRequestAsync<GetMembersRequest, GetMembersResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getMembers, request);
             }
             
             public NullStruct PromoteToGM()
@@ -380,31 +380,31 @@ namespace Blaze2SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.promoteToGM, new NullStruct());
             }
             
-            public NullStruct UpdateClubSettings()
+            public NullStruct UpdateClubSettings(UpdateClubSettingsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.updateClubSettings, new NullStruct());
+                return Connection.SendRequest<UpdateClubSettingsRequest, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.updateClubSettings, request);
             }
-            public Task<NullStruct> UpdateClubSettingsAsync()
+            public Task<NullStruct> UpdateClubSettingsAsync(UpdateClubSettingsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.updateClubSettings, new NullStruct());
-            }
-            
-            public NullStruct PostNews()
-            {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.postNews, new NullStruct());
-            }
-            public Task<NullStruct> PostNewsAsync()
-            {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.postNews, new NullStruct());
+                return Connection.SendRequestAsync<UpdateClubSettingsRequest, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.updateClubSettings, request);
             }
             
-            public NullStruct GetNews()
+            public NullStruct PostNews(PostNewsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getNews, new NullStruct());
+                return Connection.SendRequest<PostNewsRequest, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.postNews, request);
             }
-            public Task<NullStruct> GetNewsAsync()
+            public Task<NullStruct> PostNewsAsync(PostNewsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getNews, new NullStruct());
+                return Connection.SendRequestAsync<PostNewsRequest, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.postNews, request);
+            }
+            
+            public GetNewsResponse GetNews(GetNewsRequest request)
+            {
+                return Connection.SendRequest<GetNewsRequest, GetNewsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getNews, request);
+            }
+            public Task<GetNewsResponse> GetNewsAsync(GetNewsRequest request)
+            {
+                return Connection.SendRequestAsync<GetNewsRequest, GetNewsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getNews, request);
             }
             
             public NullStruct SetNewsItemHidden()
@@ -452,13 +452,13 @@ namespace Blaze2SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.sendPetition, new NullStruct());
             }
             
-            public NullStruct GetPetitions()
+            public GetPetitionsResponse GetPetitions(GetPetitionsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, new NullStruct());
+                return Connection.SendRequest<GetPetitionsRequest, GetPetitionsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, request);
             }
-            public Task<NullStruct> GetPetitionsAsync()
+            public Task<GetPetitionsResponse> GetPetitionsAsync(GetPetitionsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, new NullStruct());
+                return Connection.SendRequestAsync<GetPetitionsRequest, GetPetitionsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, request);
             }
             
             public NullStruct AcceptPetition()
@@ -524,13 +524,13 @@ namespace Blaze2SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.updateMemberOnlineStatus, new NullStruct());
             }
             
-            public NullStruct GetClubAwards()
+            public GetClubAwardsResponse GetClubAwards(GetClubAwardsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubAwards, new NullStruct());
+                return Connection.SendRequest<GetClubAwardsRequest, GetClubAwardsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubAwards, request);
             }
-            public Task<NullStruct> GetClubAwardsAsync()
+            public Task<GetClubAwardsResponse> GetClubAwardsAsync(GetClubAwardsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubAwards, new NullStruct());
+                return Connection.SendRequestAsync<GetClubAwardsRequest, GetClubAwardsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubAwards, request);
             }
             
             public NullStruct UpdateMemberMetadata()
@@ -917,8 +917,8 @@ namespace Blaze2SDK.Components
         
         public static Type GetCommandRequestType(ClubsComponentCommand command) => command switch
         {
-            ClubsComponentCommand.createClub => typeof(NullStruct),
-            ClubsComponentCommand.getClubs => typeof(NullStruct),
+            ClubsComponentCommand.createClub => typeof(CreateClubRequest),
+            ClubsComponentCommand.getClubs => typeof(GetClubsRequest),
             ClubsComponentCommand.findClubs => typeof(FindClubsRequest),
             ClubsComponentCommand.removeMember => typeof(NullStruct),
             ClubsComponentCommand.sendInvitation => typeof(NullStruct),
@@ -926,17 +926,17 @@ namespace Blaze2SDK.Components
             ClubsComponentCommand.revokeInvitation => typeof(NullStruct),
             ClubsComponentCommand.acceptInvitation => typeof(NullStruct),
             ClubsComponentCommand.declineInvitation => typeof(NullStruct),
-            ClubsComponentCommand.getMembers => typeof(NullStruct),
+            ClubsComponentCommand.getMembers => typeof(GetMembersRequest),
             ClubsComponentCommand.promoteToGM => typeof(NullStruct),
-            ClubsComponentCommand.updateClubSettings => typeof(NullStruct),
-            ClubsComponentCommand.postNews => typeof(NullStruct),
-            ClubsComponentCommand.getNews => typeof(NullStruct),
+            ClubsComponentCommand.updateClubSettings => typeof(UpdateClubSettingsRequest),
+            ClubsComponentCommand.postNews => typeof(PostNewsRequest),
+            ClubsComponentCommand.getNews => typeof(GetNewsRequest),
             ClubsComponentCommand.setNewsItemHidden => typeof(NullStruct),
             ClubsComponentCommand.setMetadata => typeof(NullStruct),
             ClubsComponentCommand.getClubsComponentSettings => typeof(NullStruct),
             ClubsComponentCommand.getClubMembershipForUsers => typeof(NullStruct),
             ClubsComponentCommand.sendPetition => typeof(NullStruct),
-            ClubsComponentCommand.getPetitions => typeof(NullStruct),
+            ClubsComponentCommand.getPetitions => typeof(GetPetitionsRequest),
             ClubsComponentCommand.acceptPetition => typeof(NullStruct),
             ClubsComponentCommand.declinePetition => typeof(NullStruct),
             ClubsComponentCommand.revokePetition => typeof(NullStruct),
@@ -944,7 +944,7 @@ namespace Blaze2SDK.Components
             ClubsComponentCommand.getClubRecordbook => typeof(NullStruct),
             ClubsComponentCommand.resetClubRecords => typeof(NullStruct),
             ClubsComponentCommand.updateMemberOnlineStatus => typeof(NullStruct),
-            ClubsComponentCommand.getClubAwards => typeof(NullStruct),
+            ClubsComponentCommand.getClubAwards => typeof(GetClubAwardsRequest),
             ClubsComponentCommand.updateMemberMetadata => typeof(NullStruct),
             ClubsComponentCommand.findClubsAsync => typeof(NullStruct),
             ClubsComponentCommand.listRivals => typeof(NullStruct),
@@ -961,8 +961,8 @@ namespace Blaze2SDK.Components
         
         public static Type GetCommandResponseType(ClubsComponentCommand command) => command switch
         {
-            ClubsComponentCommand.createClub => typeof(NullStruct),
-            ClubsComponentCommand.getClubs => typeof(NullStruct),
+            ClubsComponentCommand.createClub => typeof(CreateClubResponse),
+            ClubsComponentCommand.getClubs => typeof(GetClubsResponse),
             ClubsComponentCommand.findClubs => typeof(FindClubsResponse),
             ClubsComponentCommand.removeMember => typeof(NullStruct),
             ClubsComponentCommand.sendInvitation => typeof(NullStruct),
@@ -970,17 +970,17 @@ namespace Blaze2SDK.Components
             ClubsComponentCommand.revokeInvitation => typeof(NullStruct),
             ClubsComponentCommand.acceptInvitation => typeof(NullStruct),
             ClubsComponentCommand.declineInvitation => typeof(NullStruct),
-            ClubsComponentCommand.getMembers => typeof(NullStruct),
+            ClubsComponentCommand.getMembers => typeof(GetMembersResponse),
             ClubsComponentCommand.promoteToGM => typeof(NullStruct),
             ClubsComponentCommand.updateClubSettings => typeof(NullStruct),
             ClubsComponentCommand.postNews => typeof(NullStruct),
-            ClubsComponentCommand.getNews => typeof(NullStruct),
+            ClubsComponentCommand.getNews => typeof(GetNewsResponse),
             ClubsComponentCommand.setNewsItemHidden => typeof(NullStruct),
             ClubsComponentCommand.setMetadata => typeof(NullStruct),
             ClubsComponentCommand.getClubsComponentSettings => typeof(ClubsComponentSettings),
             ClubsComponentCommand.getClubMembershipForUsers => typeof(NullStruct),
             ClubsComponentCommand.sendPetition => typeof(NullStruct),
-            ClubsComponentCommand.getPetitions => typeof(NullStruct),
+            ClubsComponentCommand.getPetitions => typeof(GetPetitionsResponse),
             ClubsComponentCommand.acceptPetition => typeof(NullStruct),
             ClubsComponentCommand.declinePetition => typeof(NullStruct),
             ClubsComponentCommand.revokePetition => typeof(NullStruct),
@@ -988,7 +988,7 @@ namespace Blaze2SDK.Components
             ClubsComponentCommand.getClubRecordbook => typeof(NullStruct),
             ClubsComponentCommand.resetClubRecords => typeof(NullStruct),
             ClubsComponentCommand.updateMemberOnlineStatus => typeof(NullStruct),
-            ClubsComponentCommand.getClubAwards => typeof(NullStruct),
+            ClubsComponentCommand.getClubAwards => typeof(GetClubAwardsResponse),
             ClubsComponentCommand.updateMemberMetadata => typeof(NullStruct),
             ClubsComponentCommand.findClubsAsync => typeof(NullStruct),
             ClubsComponentCommand.listRivals => typeof(NullStruct),

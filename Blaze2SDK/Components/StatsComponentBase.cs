@@ -1,3 +1,4 @@
+using Blaze2SDK.Blaze.Example;
 using Blaze2SDK.Blaze.Stats;
 using BlazeCommon;
 using NLog;
@@ -515,7 +516,7 @@ namespace Blaze2SDK.Components
             StatsComponentCommand.getFilteredLeaderboard => typeof(LeaderboardStatValues),
             StatsComponentCommand.getKeyScopesMap => typeof(KeyScopes),
             StatsComponentCommand.getStatsByGroupAsync => typeof(NullStruct),
-            StatsComponentCommand.getLeaderboardTreeAsync => typeof(NullStruct),
+            StatsComponentCommand.getLeaderboardTreeAsync => typeof(ExampleResponse),
             StatsComponentCommand.getLeaderboardEntityCount => typeof(EntityCount),
             _ => typeof(NullStruct)
         };
