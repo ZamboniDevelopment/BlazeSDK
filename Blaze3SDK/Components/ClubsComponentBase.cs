@@ -54,7 +54,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getInvitations)]
-            public virtual Task<NullStruct> GetInvitationsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetInvitationsResponse> GetInvitationsAsync(GetInvitationsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -401,13 +401,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.sendInvitation, new NullStruct());
             }
             
-            public NullStruct GetInvitations()
+            public GetInvitationsResponse GetInvitations(GetInvitationsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getInvitations, new NullStruct());
+                return Connection.SendRequest<GetInvitationsRequest, GetInvitationsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getInvitations, request);
             }
-            public Task<NullStruct> GetInvitationsAsync()
+            public Task<GetInvitationsResponse> GetInvitationsAsync(GetInvitationsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getInvitations, new NullStruct());
+                return Connection.SendRequestAsync<GetInvitationsRequest, GetInvitationsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getInvitations, request);
             }
             
             public NullStruct RevokeInvitation()
@@ -1152,7 +1152,7 @@ namespace Blaze3SDK.Components
             ClubsComponentCommand.findClubs2 => typeof(NullStruct),
             ClubsComponentCommand.removeMember => typeof(NullStruct),
             ClubsComponentCommand.sendInvitation => typeof(NullStruct),
-            ClubsComponentCommand.getInvitations => typeof(NullStruct),
+            ClubsComponentCommand.getInvitations => typeof(GetInvitationsRequest),
             ClubsComponentCommand.revokeInvitation => typeof(NullStruct),
             ClubsComponentCommand.acceptInvitation => typeof(NullStruct),
             ClubsComponentCommand.declineInvitation => typeof(NullStruct),
@@ -1206,7 +1206,7 @@ namespace Blaze3SDK.Components
             ClubsComponentCommand.findClubs2 => typeof(NullStruct),
             ClubsComponentCommand.removeMember => typeof(NullStruct),
             ClubsComponentCommand.sendInvitation => typeof(NullStruct),
-            ClubsComponentCommand.getInvitations => typeof(NullStruct),
+            ClubsComponentCommand.getInvitations => typeof(GetInvitationsResponse),
             ClubsComponentCommand.revokeInvitation => typeof(NullStruct),
             ClubsComponentCommand.acceptInvitation => typeof(NullStruct),
             ClubsComponentCommand.declineInvitation => typeof(NullStruct),
