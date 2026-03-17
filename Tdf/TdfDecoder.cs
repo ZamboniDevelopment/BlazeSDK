@@ -116,7 +116,8 @@ namespace Tdf
             //this is the reason why we are forced to do unchecked conversions, but the result still will be valid.
 
             byte[] binary = value.Value.ToByteArray(false, false);
-
+            byte fillByte = (byte)(value.Value.Sign == -1 ? 0xFF : 0x00);
+            
             Type type = field.FieldType;
             object resObject;
             switch (Type.GetTypeCode(type))
@@ -131,35 +132,26 @@ namespace Tdf
                     resObject = binary[0];
                     break;
                 case TypeCode.Int16:
-                    Array.Resize(ref binary, 2);
-                    resObject = BinaryPrimitives.ReadInt16LittleEndian(binary);
+                    resObject = BinaryPrimitives.ReadInt16LittleEndian(Pad(binary, 2, fillByte));
                     break;
                 case TypeCode.UInt16:
-                    Array.Resize(ref binary, 2);
-                    resObject = BinaryPrimitives.ReadUInt16LittleEndian(binary);
+                    resObject = BinaryPrimitives.ReadUInt16LittleEndian(Pad(binary, 2, fillByte));
                     break;
                 case TypeCode.Int32:
-                    Array.Resize(ref binary, 4);
-                    resObject = BinaryPrimitives.ReadInt32LittleEndian(binary);
+                    resObject = BinaryPrimitives.ReadInt32LittleEndian(Pad(binary, 4, fillByte));
                     break;
                 case TypeCode.UInt32:
-                    Array.Resize(ref binary, 4);
-                    resObject = BinaryPrimitives.ReadUInt32LittleEndian(binary);
+                    resObject = BinaryPrimitives.ReadUInt32LittleEndian(Pad(binary, 4, fillByte));
                     break;
                 case TypeCode.Int64:
-                    Array.Resize(ref binary, 8);
-                    resObject = BinaryPrimitives.ReadInt64LittleEndian(binary);
+                    resObject = BinaryPrimitives.ReadInt64LittleEndian(Pad(binary, 8, fillByte));
                     break;
                 case TypeCode.UInt64:
-                    Array.Resize(ref binary, 8);
-                    resObject = BinaryPrimitives.ReadUInt64LittleEndian(binary);
+                    resObject = BinaryPrimitives.ReadUInt64LittleEndian(Pad(binary, 8, fillByte));
                     break;
                 default:
                     if (type == typeof(TimeValue))
-                    {
-                        Array.Resize(ref binary, 8);
-                        resObject = new TimeValue(BinaryPrimitives.ReadInt64LittleEndian(binary));
-                    }
+                        resObject = new TimeValue(BinaryPrimitives.ReadInt64LittleEndian(Pad(binary, 8, fillByte)));
                     else
                         resObject = value.Value;
                     break;
@@ -171,6 +163,15 @@ namespace Tdf
 
             field.SetValue(instance, resObject);
             return true;
+        }
+
+        private static byte[] Pad(byte[] bytes, int size, byte fillByte) 
+        {
+            if (bytes.Length >= size) return bytes;
+            byte[] paddedArray = new byte[size];
+            Array.Fill(paddedArray, fillByte);
+            Array.Copy(bytes, 0, paddedArray, 0, bytes.Length);
+            return paddedArray;
         }
 
         private bool ReadTdfString(Stream stream, ref object? instance, FieldInfo? field)
