@@ -7,7 +7,7 @@ namespace Blaze3SDK.Blaze.GameManager
 	{
 
 		[TdfMember("GID")]
-		public uint mGameId;
+		public ulong mGameId;
 
 		[TdfMember("JGS")]
 		public JoinState mJoinState;
