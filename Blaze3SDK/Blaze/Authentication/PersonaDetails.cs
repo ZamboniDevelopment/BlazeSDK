@@ -23,6 +23,9 @@ namespace Blaze3SDK.Blaze.Authentication
 		
         [TdfMember("XREF")]
         public ulong mExtId;
+        
+        [TdfMember("XTYP")]
+        public ExternalSystemId mExternalSystemId;
 
     }
 }

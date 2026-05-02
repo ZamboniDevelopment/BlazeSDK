@@ -13,7 +13,7 @@ namespace Blaze3SDK.Blaze.GameManager
 		public uint mListId;
 
 		[TdfMember("REMV")]
-		public List<uint> mRemovedGameList;
+		public List<ulong> mRemovedGameList;
 
 		[TdfMember("UPDT")]
 		public List<GameBrowserMatchData> mUpdatedGames;
