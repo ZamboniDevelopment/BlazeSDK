@@ -24,7 +24,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubs)]
-            public virtual Task<NullStruct> GetClubsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetClubsResponse> GetClubsAsync(GetClubsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -144,7 +144,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubMembershipForUsers)]
-            public virtual Task<NullStruct> GetClubMembershipForUsersAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetClubMembershipForUsersResponse> GetClubMembershipForUsersAsync(GetClubMembershipForUsersRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -156,7 +156,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getPetitions)]
-            public virtual Task<NullStruct> GetPetitionsAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetPetitionsResponse> GetPetitionsAsync(GetPetitionsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -356,13 +356,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.createClub, new NullStruct());
             }
             
-            public NullStruct GetClubs()
+            public GetClubsResponse GetClubs(GetClubsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, new NullStruct());
+                return Connection.SendRequest<GetClubsRequest, GetClubsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, request);
             }
-            public Task<NullStruct> GetClubsAsync()
+            public Task<GetClubsResponse> GetClubsAsync(GetClubsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, new NullStruct());
+                return Connection.SendRequestAsync<GetClubsRequest, GetClubsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, request);
             }
             
             public NullStruct FindClubs()
@@ -536,13 +536,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.transferOwnership, new NullStruct());
             }
             
-            public NullStruct GetClubMembershipForUsers()
+            public GetClubMembershipForUsersResponse GetClubMembershipForUsers(GetClubMembershipForUsersRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubMembershipForUsers, new NullStruct());
+                return Connection.SendRequest<GetClubMembershipForUsersRequest, GetClubMembershipForUsersResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubMembershipForUsers, request);
             }
-            public Task<NullStruct> GetClubMembershipForUsersAsync()
+            public Task<GetClubMembershipForUsersResponse> GetClubMembershipForUsersAsync(GetClubMembershipForUsersRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubMembershipForUsers, new NullStruct());
+                return Connection.SendRequestAsync<GetClubMembershipForUsersRequest, GetClubMembershipForUsersResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubMembershipForUsers, request);
             }
             
             public NullStruct SendPetition()
@@ -554,13 +554,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.sendPetition, new NullStruct());
             }
             
-            public NullStruct GetPetitions()
+            public GetPetitionsResponse GetPetitions(GetPetitionsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, new NullStruct());
+                return Connection.SendRequest<GetPetitionsRequest, GetPetitionsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, request);
             }
-            public Task<NullStruct> GetPetitionsAsync()
+            public Task<GetPetitionsResponse> GetPetitionsAsync(GetPetitionsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, new NullStruct());
+                return Connection.SendRequestAsync<GetPetitionsRequest, GetPetitionsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, request);
             }
             
             public NullStruct AcceptPetition()
@@ -831,9 +831,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubs)]
-            public virtual Task<NullStruct> GetClubsAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<GetClubsResponse> GetClubsAsync(GetClubsRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, request);
+                return context.ClientConnection.SendRequestAsync<GetClubsRequest, GetClubsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubs, request);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.findClubs)]
@@ -951,9 +951,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getClubMembershipForUsers)]
-            public virtual Task<NullStruct> GetClubMembershipForUsersAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<GetClubMembershipForUsersResponse> GetClubMembershipForUsersAsync(GetClubMembershipForUsersRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getClubMembershipForUsers, request);
+                return context.ClientConnection.SendRequestAsync<GetClubMembershipForUsersRequest, GetClubMembershipForUsersResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getClubMembershipForUsers, request);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.sendPetition)]
@@ -963,9 +963,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.getPetitions)]
-            public virtual Task<NullStruct> GetPetitionsAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<GetPetitionsResponse> GetPetitionsAsync(GetPetitionsRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, request);
+                return context.ClientConnection.SendRequestAsync<GetPetitionsRequest, GetPetitionsResponse, NullStruct>(this, (ushort)ClubsComponentCommand.getPetitions, request);
             }
             
             [BlazeCommand((ushort)ClubsComponentCommand.acceptPetition)]
@@ -1147,7 +1147,7 @@ namespace Blaze3SDK.Components
         public static Type GetCommandRequestType(ClubsComponentCommand command) => command switch
         {
             ClubsComponentCommand.createClub => typeof(NullStruct),
-            ClubsComponentCommand.getClubs => typeof(NullStruct),
+            ClubsComponentCommand.getClubs => typeof(GetClubsRequest),
             ClubsComponentCommand.findClubs => typeof(NullStruct),
             ClubsComponentCommand.findClubs2 => typeof(NullStruct),
             ClubsComponentCommand.removeMember => typeof(NullStruct),
@@ -1167,9 +1167,9 @@ namespace Blaze3SDK.Components
             ClubsComponentCommand.setMetadata2 => typeof(NullStruct),
             ClubsComponentCommand.getClubsComponentSettings => typeof(NullStruct),
             ClubsComponentCommand.transferOwnership => typeof(NullStruct),
-            ClubsComponentCommand.getClubMembershipForUsers => typeof(NullStruct),
+            ClubsComponentCommand.getClubMembershipForUsers => typeof(GetClubMembershipForUsersRequest),
             ClubsComponentCommand.sendPetition => typeof(NullStruct),
-            ClubsComponentCommand.getPetitions => typeof(NullStruct),
+            ClubsComponentCommand.getPetitions => typeof(GetPetitionsRequest),
             ClubsComponentCommand.acceptPetition => typeof(NullStruct),
             ClubsComponentCommand.declinePetition => typeof(NullStruct),
             ClubsComponentCommand.revokePetition => typeof(NullStruct),
@@ -1201,7 +1201,7 @@ namespace Blaze3SDK.Components
         public static Type GetCommandResponseType(ClubsComponentCommand command) => command switch
         {
             ClubsComponentCommand.createClub => typeof(NullStruct),
-            ClubsComponentCommand.getClubs => typeof(NullStruct),
+            ClubsComponentCommand.getClubs => typeof(GetClubsResponse),
             ClubsComponentCommand.findClubs => typeof(NullStruct),
             ClubsComponentCommand.findClubs2 => typeof(NullStruct),
             ClubsComponentCommand.removeMember => typeof(NullStruct),
@@ -1221,9 +1221,9 @@ namespace Blaze3SDK.Components
             ClubsComponentCommand.setMetadata2 => typeof(NullStruct),
             ClubsComponentCommand.getClubsComponentSettings => typeof(ClubsComponentSettings),
             ClubsComponentCommand.transferOwnership => typeof(NullStruct),
-            ClubsComponentCommand.getClubMembershipForUsers => typeof(NullStruct),
+            ClubsComponentCommand.getClubMembershipForUsers => typeof(GetClubMembershipForUsersResponse),
             ClubsComponentCommand.sendPetition => typeof(NullStruct),
-            ClubsComponentCommand.getPetitions => typeof(NullStruct),
+            ClubsComponentCommand.getPetitions => typeof(GetPetitionsResponse),
             ClubsComponentCommand.acceptPetition => typeof(NullStruct),
             ClubsComponentCommand.declinePetition => typeof(NullStruct),
             ClubsComponentCommand.revokePetition => typeof(NullStruct),

@@ -138,7 +138,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getTrades)]
-            public virtual Task<NullStruct> GetTradesAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<GetTradesResponse> GetTradesAsync(GetTradesRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -403,13 +403,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.processTrade, new NullStruct());
             }
             
-            public NullStruct GetTrades()
+            public GetTradesResponse GetTrades(GetTradesRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, new NullStruct());
+                return Connection.SendRequest<GetTradesRequest, GetTradesResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, request);
             }
-            public Task<NullStruct> GetTradesAsync()
+            public Task<GetTradesResponse> GetTradesAsync(GetTradesRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, new NullStruct());
+                return Connection.SendRequestAsync<GetTradesRequest, GetTradesResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, request);
             }
             
             public GetMembersResponse GetMembers(GetMembersRequest request)
@@ -636,9 +636,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getTrades)]
-            public virtual Task<NullStruct> GetTradesAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<GetTradesResponse> GetTradesAsync(GetTradesRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, request);
+                return context.ClientConnection.SendRequestAsync<GetTradesRequest, GetTradesResponse, NullStruct>(this, (ushort)LeagueComponentCommand.getTrades, request);
             }
             
             [BlazeCommand((ushort)LeagueComponentCommand.getMembers)]
@@ -731,7 +731,7 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.processInvitation => typeof(NullStruct),
             LeagueComponentCommand.proposeTrade => typeof(NullStruct),
             LeagueComponentCommand.processTrade => typeof(NullStruct),
-            LeagueComponentCommand.getTrades => typeof(NullStruct),
+            LeagueComponentCommand.getTrades => typeof(GetTradesRequest),
             LeagueComponentCommand.getMembers => typeof(GetMembersRequest),
             LeagueComponentCommand.submitStatistics => typeof(NullStruct),
             LeagueComponentCommand.getRecentGames => typeof(NullStruct),
@@ -766,7 +766,7 @@ namespace Blaze3SDK.Components
             LeagueComponentCommand.processInvitation => typeof(NullStruct),
             LeagueComponentCommand.proposeTrade => typeof(NullStruct),
             LeagueComponentCommand.processTrade => typeof(NullStruct),
-            LeagueComponentCommand.getTrades => typeof(NullStruct),
+            LeagueComponentCommand.getTrades => typeof(GetTradesResponse),
             LeagueComponentCommand.getMembers => typeof(GetMembersResponse),
             LeagueComponentCommand.submitStatistics => typeof(NullStruct),
             LeagueComponentCommand.getRecentGames => typeof(NullStruct),

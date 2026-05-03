@@ -1,3 +1,4 @@
+using Blaze3SDK.Blaze.Example;
 using Blaze3SDK.Blaze.Stats;
 using BlazeCommon;
 using NLog;
@@ -41,7 +42,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getStatsByGroup)]
-            public virtual Task<NullStruct> GetStatsByGroupAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<NullStruct> GetStatsByGroupAsync(GetStatsByGroupRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -215,13 +216,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<GetStatGroupRequest, StatGroupResponse, NullStruct>(this, (ushort)StatsComponentCommand.getStatGroup, request);
             }
             
-            public NullStruct GetStatsByGroup()
+            public NullStruct GetStatsByGroup(GetStatsByGroupRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroup, new NullStruct());
+                return Connection.SendRequest<GetStatsByGroupRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroup, request);
             }
-            public Task<NullStruct> GetStatsByGroupAsync()
+            public Task<NullStruct> GetStatsByGroupAsync(GetStatsByGroupRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroup, new NullStruct());
+                return Connection.SendRequestAsync<GetStatsByGroupRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroup, request);
             }
             
             public NullStruct GetDateRange()
@@ -431,9 +432,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getStatsByGroup)]
-            public virtual Task<NullStruct> GetStatsByGroupAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<NullStruct> GetStatsByGroupAsync(GetStatsByGroupRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroup, request);
+                return context.ClientConnection.SendRequestAsync<GetStatsByGroupRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroup, request);
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getDateRange)]
@@ -564,7 +565,7 @@ namespace Blaze3SDK.Components
             StatsComponentCommand.getStats => typeof(NullStruct),
             StatsComponentCommand.getStatGroupList => typeof(NullStruct),
             StatsComponentCommand.getStatGroup => typeof(GetStatGroupRequest),
-            StatsComponentCommand.getStatsByGroup => typeof(NullStruct),
+            StatsComponentCommand.getStatsByGroup => typeof(GetStatsByGroupRequest),
             StatsComponentCommand.getDateRange => typeof(NullStruct),
             StatsComponentCommand.getEntityCount => typeof(NullStruct),
             StatsComponentCommand.getLeaderboardGroup => typeof(LeaderboardGroupRequest),
