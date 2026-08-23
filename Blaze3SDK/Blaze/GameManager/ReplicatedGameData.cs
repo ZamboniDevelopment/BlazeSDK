@@ -90,7 +90,7 @@ namespace Blaze3SDK.Blaze.GameManager
 		public uint mSharedSeed;
 
 		[TdfMember("TCAP")]
-		public ushort mTeamCapacity;
+		public List<TeamCapacity> mTeamCapacity;
 
 		[TdfMember("THST")]
 		public HostInfo mTopologyHostInfo;
