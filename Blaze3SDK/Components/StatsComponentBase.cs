@@ -72,13 +72,13 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getLeaderboard)]
-            public virtual Task<NullStruct> GetLeaderboardAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<LeaderboardStatValues> GetLeaderboardAsync(LeaderboardStatsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getCenteredLeaderboard)]
-            public virtual Task<NullStruct> GetCenteredLeaderboardAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<LeaderboardStatValues> GetCenteredLeaderboardAsync(CenteredLeaderboardStatsRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -102,7 +102,7 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getLeaderboardTreeAsync)]
-            public virtual Task<NullStruct> GetLeaderboardTreeAsyncAsync(NullStruct request, BlazeRpcContext context)
+            public virtual Task<NullStruct> GetLeaderboardTreeAsyncAsync(GetLeaderboardTreeRequest request, BlazeRpcContext context)
             {
                 throw new BlazeRpcException(Blaze3RpcError.ERR_COMMAND_NOT_FOUND);
             }
@@ -261,22 +261,22 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<LeaderboardFolderGroupRequest, LeaderboardFolderGroup, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardFolderGroup, request);
             }
             
-            public NullStruct GetLeaderboard()
+            public LeaderboardStatValues GetLeaderboard(LeaderboardStatsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboard, new NullStruct());
+                return Connection.SendRequest<LeaderboardStatsRequest, LeaderboardStatValues, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboard, request);
             }
-            public Task<NullStruct> GetLeaderboardAsync()
+            public Task<LeaderboardStatValues> GetLeaderboardAsync(LeaderboardStatsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboard, new NullStruct());
+                return Connection.SendRequestAsync<LeaderboardStatsRequest, LeaderboardStatValues, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboard, request);
             }
             
-            public NullStruct GetCenteredLeaderboard()
+            public LeaderboardStatValues GetCenteredLeaderboard(CenteredLeaderboardStatsRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getCenteredLeaderboard, new NullStruct());
+                return Connection.SendRequest<CenteredLeaderboardStatsRequest, LeaderboardStatValues, NullStruct>(this, (ushort)StatsComponentCommand.getCenteredLeaderboard, request);
             }
-            public Task<NullStruct> GetCenteredLeaderboardAsync()
+            public Task<LeaderboardStatValues> GetCenteredLeaderboardAsync(CenteredLeaderboardStatsRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getCenteredLeaderboard, new NullStruct());
+                return Connection.SendRequestAsync<CenteredLeaderboardStatsRequest, LeaderboardStatValues, NullStruct>(this, (ushort)StatsComponentCommand.getCenteredLeaderboard, request);
             }
             
             public NullStruct GetFilteredLeaderboard()
@@ -306,13 +306,13 @@ namespace Blaze3SDK.Components
                 return Connection.SendRequestAsync<GetStatsByGroupRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getStatsByGroupAsync, request);
             }
             
-            public NullStruct GetLeaderboardTreeAsynchronously()
+            public NullStruct GetLeaderboardTreeAsynchronously(GetLeaderboardTreeRequest request)
             {
-                return Connection.SendRequest<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardTreeAsync, new NullStruct());
+                return Connection.SendRequest<GetLeaderboardTreeRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardTreeAsync, request);
             }
-            public Task<NullStruct> GetLeaderboardTreeAsynchronouslyAsync()
+            public Task<NullStruct> GetLeaderboardTreeAsynchronouslyAsync(GetLeaderboardTreeRequest request)
             {
-                return Connection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardTreeAsync, new NullStruct());
+                return Connection.SendRequestAsync<GetLeaderboardTreeRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardTreeAsync, request);
             }
             
             public NullStruct GetLeaderboardEntityCount()
@@ -462,15 +462,15 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getLeaderboard)]
-            public virtual Task<NullStruct> GetLeaderboardAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<LeaderboardStatValues> GetLeaderboardAsync(LeaderboardStatsRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboard, request);
+                return context.ClientConnection.SendRequestAsync<LeaderboardStatsRequest, LeaderboardStatValues, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboard, request);
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getCenteredLeaderboard)]
-            public virtual Task<NullStruct> GetCenteredLeaderboardAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<LeaderboardStatValues> GetCenteredLeaderboardAsync(CenteredLeaderboardStatsRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getCenteredLeaderboard, request);
+                return context.ClientConnection.SendRequestAsync<CenteredLeaderboardStatsRequest, LeaderboardStatValues, NullStruct>(this, (ushort)StatsComponentCommand.getCenteredLeaderboard, request);
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getFilteredLeaderboard)]
@@ -492,9 +492,9 @@ namespace Blaze3SDK.Components
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getLeaderboardTreeAsync)]
-            public virtual Task<NullStruct> GetLeaderboardTreeAsyncAsync(NullStruct request, BlazeProxyContext context)
+            public virtual Task<NullStruct> GetLeaderboardTreeAsyncAsync(GetLeaderboardTreeRequest request, BlazeProxyContext context)
             {
-                return context.ClientConnection.SendRequestAsync<NullStruct, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardTreeAsync, request);
+                return context.ClientConnection.SendRequestAsync<GetLeaderboardTreeRequest, NullStruct, NullStruct>(this, (ushort)StatsComponentCommand.getLeaderboardTreeAsync, request);
             }
             
             [BlazeCommand((ushort)StatsComponentCommand.getLeaderboardEntityCount)]
@@ -570,12 +570,12 @@ namespace Blaze3SDK.Components
             StatsComponentCommand.getEntityCount => typeof(NullStruct),
             StatsComponentCommand.getLeaderboardGroup => typeof(LeaderboardGroupRequest),
             StatsComponentCommand.getLeaderboardFolderGroup => typeof(LeaderboardFolderGroupRequest),
-            StatsComponentCommand.getLeaderboard => typeof(NullStruct),
-            StatsComponentCommand.getCenteredLeaderboard => typeof(NullStruct),
+            StatsComponentCommand.getLeaderboard => typeof(LeaderboardStatsRequest),
+            StatsComponentCommand.getCenteredLeaderboard => typeof(CenteredLeaderboardStatsRequest),
             StatsComponentCommand.getFilteredLeaderboard => typeof(NullStruct),
             StatsComponentCommand.getKeyScopesMap => typeof(NullStruct),
             StatsComponentCommand.getStatsByGroupAsync => typeof(GetStatsByGroupRequest),
-            StatsComponentCommand.getLeaderboardTreeAsync => typeof(NullStruct),
+            StatsComponentCommand.getLeaderboardTreeAsync => typeof(GetLeaderboardTreeRequest),
             StatsComponentCommand.getLeaderboardEntityCount => typeof(NullStruct),
             StatsComponentCommand.getStatCategoryList => typeof(NullStruct),
             StatsComponentCommand.getPeriodIds => typeof(NullStruct),
@@ -597,8 +597,8 @@ namespace Blaze3SDK.Components
             StatsComponentCommand.getEntityCount => typeof(NullStruct),
             StatsComponentCommand.getLeaderboardGroup => typeof(LeaderboardGroupResponse),
             StatsComponentCommand.getLeaderboardFolderGroup => typeof(LeaderboardFolderGroup),
-            StatsComponentCommand.getLeaderboard => typeof(NullStruct),
-            StatsComponentCommand.getCenteredLeaderboard => typeof(NullStruct),
+            StatsComponentCommand.getLeaderboard => typeof(LeaderboardStatValues),
+            StatsComponentCommand.getCenteredLeaderboard => typeof(LeaderboardStatValues),
             StatsComponentCommand.getFilteredLeaderboard => typeof(NullStruct),
             StatsComponentCommand.getKeyScopesMap => typeof(KeyScopes),
             StatsComponentCommand.getStatsByGroupAsync => typeof(NullStruct),
