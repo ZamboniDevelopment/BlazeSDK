@@ -8,7 +8,7 @@ namespace BlazeCommon
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-        internal static void LogPacket(IBlazeComponent? component, IBlazePacket packet, bool inbound)
+        internal static void LogPacket(IBlazeComponent? component, IBlazePacket packet, bool inbound, string connectionId)
         {
             if (component == null)
             {
@@ -17,9 +17,9 @@ namespace BlazeCommon
             }
 
             if (_logger.IsDebugEnabled)
-                _logger.Debug(packet.ToString(component, inbound));
+                _logger.Debug(packet.ToString(component, inbound, connectionId));
             else
-                _logger.Info(packet.Frame.ToString(component, inbound));
+                _logger.Info(packet.Frame.ToString(component, inbound, connectionId));
         }
 
         public static IPAddress ToIpAddress(uint ip)

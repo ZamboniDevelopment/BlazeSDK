@@ -7,7 +7,7 @@ namespace BlazeCommon
         FireFrame Frame { get; set; }
         object DataObj { get; }
 
-        string ToString(IBlazeComponent component, bool inbound);
+        string ToString(IBlazeComponent component, bool inbound, string connectionId);
         void WriteTo(Stream stream, ITdfEncoder encoder);
         Task WriteToAsync(Stream stream, ITdfEncoder encoder);
         byte[] Encode(ITdfEncoder encoder);

@@ -42,7 +42,7 @@
                 IsBusyLock.Exit();
             }
 
-            BlazeUtils.LogPacket(component, packet, false);
+            BlazeUtils.LogPacket(component, packet, false, ProtoFireConnection.ID.ToString());
             await ProtoFireConnection.SendAsync(protoFirePacket).ConfigureAwait(false);
         }
 
@@ -68,7 +68,7 @@
                 IsBusyLock.Exit();
             }
 
-            BlazeUtils.LogPacket(component, packet, false);
+            BlazeUtils.LogPacket(component, packet, false, ProtoFireConnection.ID.ToString());
             await ProtoFireConnection.SendAsync(protoFirePacket).ConfigureAwait(false);
         }
     }

@@ -336,7 +336,7 @@
             };
         }
 
-        public string ToString(IBlazeComponent component, bool inbound)
+        public string ToString(IBlazeComponent component, bool inbound, string connectionId)
         {
             string error = "";
             int errorCode = FullErrorCode;
@@ -344,7 +344,7 @@
             if (errorCode != 0 || MsgType == MessageType.ERROR_REPLY)
                 error = $", ERR[{component.GetErrorName(errorCode)} (0x{errorCode:X8})]";
 
-            return $"{(inbound ? "<-" : "->")} {getMsgTypeString(MsgType)}: ID[{MsgNum}], UI[{UserIndex}], {component.GetFullName(this)} [0x{Component:X4}::0x{Command:X4}]{error}";
+            return $"{(inbound ? "<-" : "->")} {getMsgTypeString(MsgType)}: ID[{MsgNum}], UI[{UserIndex}], CONN_ID[{connectionId}] {component.GetFullName(this)} [0x{Component:X4}::0x{Command:X4}]{error}";
         }
 
         public string ToString(bool inbound)

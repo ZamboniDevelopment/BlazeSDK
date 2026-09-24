@@ -99,7 +99,7 @@ namespace BlazeCommon
 
         Task SendBlazePacket(ProtoFireConnection connection, IBlazeComponent? component, IBlazePacket packet)
         {
-            BlazeUtils.LogPacket(component, packet, false);
+            BlazeUtils.LogPacket(component, packet, false, connection.ID.ToString());
             return connection.SendAsync(packet.ToProtoFirePacket(Configuration.Encoder));
         }
 
@@ -118,7 +118,7 @@ namespace BlazeCommon
             FireFrame frame = packet.Frame;
             IBlazePacket blazePacket = DecodePacket(packet);
             IBlazeServerComponent? component = Configuration.GetComponent(frame.Component);
-            BlazeUtils.LogPacket(component, blazePacket, true);
+            BlazeUtils.LogPacket(component, blazePacket, true, connection.ID.ToString());
 
             if (frame.MsgType != FireFrame.MessageType.MESSAGE)
             {

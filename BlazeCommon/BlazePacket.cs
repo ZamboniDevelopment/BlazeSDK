@@ -20,10 +20,10 @@ namespace BlazeCommon
         }
 
 
-        public string ToString(IBlazeComponent component, bool inbound)
+        public string ToString(IBlazeComponent component, bool inbound, string connectionId)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append(Frame.ToString(component, inbound));
+            builder.Append(Frame.ToString(component, inbound, connectionId));
 
             TdfStruct? tdfStruct = typeof(T).GetCustomAttribute<TdfStruct>();
             if (tdfStruct != null && tdfStruct.HasData)
@@ -301,6 +301,11 @@ namespace BlazeCommon
 
 
             return "TODO(" + type.Name + ")";
+        }
+
+        public string ToString(IBlazeComponent component, bool inbound)
+        {
+            throw new NotImplementedException();
         }
 
         public void WriteTo(Stream stream, ITdfEncoder encoder)

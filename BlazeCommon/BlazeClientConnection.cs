@@ -34,7 +34,7 @@ namespace BlazeCommon
 
             Type notificationType = component.GetNotificationType(packet.Frame.Command);
             IBlazePacket blazePacket = packet.Decode(notificationType, Config.Decoder);
-            BlazeUtils.LogPacket(component, blazePacket, true);
+            BlazeUtils.LogPacket(component, blazePacket, true, Connection.ID.ToString());
 
             BlazeClientNotificationMethodInfo? methodInfo = component.GetBlazeNotificationInfo(packet.Frame.Command);
             if (methodInfo == null)
@@ -68,12 +68,12 @@ namespace BlazeCommon
             BlazePacket<TRequest> blazeRequestPacket = (BlazePacket<TRequest>)Activator.CreateInstance(blazeRequestPacketType, frame, request)!;
             ProtoFirePacket requestPacket = blazeRequestPacket.ToProtoFirePacket(Config.Encoder);
 
-            BlazeUtils.LogPacket(component, blazeRequestPacket, false);
+            BlazeUtils.LogPacket(component, blazeRequestPacket, false, Connection.ID.ToString());
             ProtoFirePacket responsePacket = SendRequest(requestPacket);
 
             Type responseType = responsePacket.Frame.MsgType == FireFrame.MessageType.REPLY ? typeof(TResponse) : typeof(TErrorResponse);
             IBlazePacket responseBlazePacket = responsePacket.Decode(responseType, Config.Decoder);
-            BlazeUtils.LogPacket(component, responseBlazePacket, true);
+            BlazeUtils.LogPacket(component, responseBlazePacket, true, Connection.ID.ToString());
 
             if (responsePacket.Frame.MsgType == FireFrame.MessageType.REPLY)
                 return (TResponse)responseBlazePacket.DataObj;
@@ -97,12 +97,12 @@ namespace BlazeCommon
             BlazePacket<TRequest> blazeRequestPacket = (BlazePacket<TRequest>)Activator.CreateInstance(blazeRequestPacketType, frame, request)!;
             ProtoFirePacket requestPacket = blazeRequestPacket.ToProtoFirePacket(Config.Encoder);
 
-            BlazeUtils.LogPacket(component, blazeRequestPacket, false);
+            BlazeUtils.LogPacket(component, blazeRequestPacket, false, Connection.ID.ToString());
             ProtoFirePacket responsePacket = await SendRequestAsync(requestPacket).ConfigureAwait(false);
 
             Type responseType = responsePacket.Frame.MsgType == FireFrame.MessageType.REPLY ? typeof(TResponse) : typeof(TErrorResponse);
             IBlazePacket responseBlazePacket = responsePacket.Decode(responseType, Config.Decoder);
-            BlazeUtils.LogPacket(component, responseBlazePacket, true);
+            BlazeUtils.LogPacket(component, responseBlazePacket, true, Connection.ID.ToString());
 
             if (responsePacket.Frame.MsgType == FireFrame.MessageType.REPLY)
                 return (TResponse)responseBlazePacket.DataObj;
