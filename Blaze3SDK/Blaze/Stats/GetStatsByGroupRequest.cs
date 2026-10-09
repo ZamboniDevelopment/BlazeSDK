@@ -29,6 +29,9 @@ namespace Blaze3SDK.Blaze.Stats
 
 		[TdfMember("TIME")]
 		public int mTime;
+		
+		[TdfMember("PRID")]
+		public int mPRID;
 
 		[TdfMember("VID")]
 		public uint mViewId;
